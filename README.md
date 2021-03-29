@@ -1,9 +1,7 @@
 # codetoolbox
 白嫖githubpage做的代码工具箱
-具有格式化，压缩，生成二维码等功能
+具有格式化，压缩，生成二维码等多个功能
 
-### 实例
----
-[CodeToolsBox / XiaoMouz](http://codetool.mou.best/#/)
+# 本项目源自
 
-[CodeToolsBox / Tsuk1ko](https://lolicon.dev/#/)
+[[CodeToolsBox / Tsuk1ko](https://lolicon.dev/#/)]
