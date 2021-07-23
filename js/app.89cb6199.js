@@ -470,7 +470,7 @@
                     }
                 }), i("p", [t._v("这是一个纯 JavaScript 实现的工具箱，没有依赖任何后端，"), i("del", {
                     staticClass: "mdui-text-color-black-disabled"
-                }, [t._v("为的是可以白嫖 Pages 服务部署。")]), t._v("（bushi）")]), i("p", [t._v("它是神代大佬学习 Vue.js 的副产物，顺便想看看仅靠在客户端上运行 JavaScript 到底能做多少事情，仅此而已。")]), i("p", [t._v("功能可能时不时会添加。")]), i("h2", [t._v("感谢")]), i("p", [t._v("本工具箱或多或少地参考了这些应用，它们也都是非常优秀的工具箱应用：")]), i("ul", [i("li", [i("a", {
+                }, [t._v("为的是可以白嫖 Pages 服务部署。")]), t._v("（bushi）")]), i("p", [t._v("它是神代大佬学习 Vue.js 时的小作品。")]), i("p", [t._v("功能在我学了JS后可能会添加。XD")]), i("h2", [t._v("感谢")]), i("p", [t._v("本工具箱或多或少地参考了这些应用，它们也都是非常优秀的工具箱应用：")]), i("ul", [i("li", [i("a", {
                     attrs: {
                         href: "https://www.boxmoe.tools",
                         target: "_blank"
