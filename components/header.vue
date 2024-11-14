@@ -94,14 +94,12 @@ const components: { title: string; href: string; description: string }[] = [
                 <NavigationMenuLink as-child class="">
                   <div class="rounded-md bg-custom w-full h-full">
                     <a
-                      class="rounded-md bg-custom-child cursor-pointer flex h-full w-full select-none flex-col justify-end from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                      class="rounded-md hover:shadow-md bg-custom-child cursor-pointer flex h-full w-full select-none flex-col justify-end from-muted/50 to-muted p-6 no-underline outline-none"
                       @click="() => $router.push('/admin')"
                     >
                       <img src="/public/favicon.ico" class="h-6 w-6" />
                       <div class="mb-2 mt-4 text-lg font-medium">Main</div>
-                      <p
-                        class="text-white/90 text-sm leading-tight dark:text-muted-foreground"
-                      >
+                      <p class="text-sm leading-tight dark:text-muted">
                         Welcome back Commander.
                       </p>
                     </a>
@@ -168,6 +166,7 @@ const components: { title: string; href: string; description: string }[] = [
 /* add a filter shadow for background */
 .bg-custom {
   background: white;
+  background: url('/favicon.ico') no-repeat center center;
 }
 .bg-custom-child {
   backdrop-filter: blur(2px);
@@ -185,11 +184,7 @@ const components: { title: string; href: string; description: string }[] = [
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0.5) 100%
-    );
+
     transition: opacity 0.3s;
     opacity: 0.2;
   }
@@ -201,7 +196,7 @@ const components: { title: string; href: string; description: string }[] = [
 
 @media (prefers-color-scheme: light) {
   .bg-custom {
-    background: bloack;
+    background: black;
   }
 
   .bg-custom-child {
