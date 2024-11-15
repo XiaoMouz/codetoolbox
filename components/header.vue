@@ -6,7 +6,6 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu'
 
 import NavListItem from './ui/NavListItem.vue'
@@ -23,8 +22,14 @@ const $route = useRoute()
   <header
     class="w-full flex flex-nowrap justify-between items-center pt-5 pl-10 pr-20"
   >
-    <div>&nbsp;</div>
-    <NavigationMenu>
+    <div class="flex items-center">
+      &nbsp;<Icon
+        name="mdi:home"
+        class="flex md:hidden size-5 cursor-pointer"
+        @click="$router.push('/')"
+      />
+    </div>
+    <NavigationMenu class="hidden md:flex">
       <NavigationMenuList>
         <NavigationMenuItem v-for="item in menus" :key="item.title">
           <NavigationMenuTrigger>{{ item.title }}</NavigationMenuTrigger>

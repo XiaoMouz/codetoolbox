@@ -60,24 +60,28 @@ const cryptoPages: Menu[] = [
     href: '/crypto/unicode',
     description: 'Unicode Encode, Unicode Decode',
     icon: 'mdi:unicode',
+    state: 'wip',
   },
   {
     title: 'URL',
     href: '/crypto/urlencode',
     description: 'URL Encode, URL Decode',
     icon: 'mdi:link',
+    state: 'wip',
   },
   {
     title: 'Hash',
     href: '/crypto/hash',
     description: 'MD5, SHA1 ...',
     icon: 'mdi:lock',
+    state: 'wip',
   },
   {
     title: 'Encrypt',
     href: '/crypto/crypt',
     description: 'AES, DES, RSA ...',
     icon: 'mdi:shield-lock-outline',
+    state: 'wip',
   },
 ]
 
@@ -87,18 +91,21 @@ const imagePages: Menu[] = [
     href: '/image/data2uri',
     description: 'Image 2 URI, URI 2 Image',
     icon: 'mdi:image-multiple-outline',
+    state: 'wip',
   },
   {
     title: 'Generate QR Code',
     href: '/image/genQRcode',
     description: 'Generate QR Code',
     icon: 'mdi:qrcode',
+    state: 'wip',
   },
   {
     title: 'PNG to Favicon',
     href: '/image/png2icon',
     description: 'PNG to Favicon',
     icon: 'mdi:alpha-f-box-outline',
+    state: 'wip',
   },
 ]
 const converMenu: Menu[] = [
@@ -107,6 +114,7 @@ const converMenu: Menu[] = [
     href: '/convert/cidr2ip',
     description: 'CIDR to IP Range',
     icon: 'mdi:ip-network-outline',
+    state: 'wip',
   },
 ]
 

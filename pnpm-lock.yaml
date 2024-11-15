@@ -41,6 +41,9 @@ importers:
       javascript-obfuscator:
         specifier: ^4.1.1
         version: 4.1.1
+      js-base64:
+        specifier: ^3.7.7
+        version: 3.7.7
       lucide-vue-next:
         specifier: ^0.456.0
         version: 0.456.0(vue@3.5.12(typescript@5.6.3))
@@ -2352,6 +2355,9 @@ packages:
   jiti@2.4.0:
     resolution: {integrity: sha512-H5UpaUI+aHOqZXlYOaFP/8AzKsg+guWu+Pr3Y8i7+Y3zr1aXAvCvTAQ1RxSc6oVD8R8c7brgNtTVP91E7upH/g==}
     hasBin: true
+
+  js-base64@3.7.7:
+    resolution: {integrity: sha512-7rCnleh0z2CkXhH67J8K1Ytz0b2Y+yxTPL+/KOJoa20hfnVQ/3/T6W/KflYI4bRHRagNeXeU2bkNGI3v1oS/lw==}
 
   js-levenshtein@1.1.6:
     resolution: {integrity: sha512-X2BB11YZtrRqY4EnQcLX5Rh373zbK4alC1FW7D7MBhL2gtcC17cTnr6DmfHZeS0s2rTHjUTMMHfG7gO8SSdw+g==}
@@ -6488,6 +6494,8 @@ snapshots:
   jiti@1.21.6: {}
 
   jiti@2.4.0: {}
+
+  js-base64@3.7.7: {}
 
   js-levenshtein@1.1.6: {}
 
