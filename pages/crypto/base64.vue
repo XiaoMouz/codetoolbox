@@ -1,0 +1,4 @@
+<template>
+    {{ $route.path }}
+  </template>
+  

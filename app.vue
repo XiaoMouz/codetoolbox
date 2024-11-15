@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { useDark } from '@vueuse/core'
+import { ConfigProvider } from 'radix-vue'
+
+const useIdFunction = () => useId()
 
 useHead({
   script: [
@@ -12,14 +15,17 @@ useHead({
   ],
 })
 useDark()
+preloadComponents(['header', 'nav-list-item'])
 </script>
 
 <template>
-  <Toaster />
-  <NuxtLoadingIndicator />
-  <NuxtLayout>
-    <NuxtPage />
-  </NuxtLayout>
+  <ConfigProvider :use-id="useIdFunction">
+    <Toaster />
+    <NuxtLoadingIndicator />
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
+  </ConfigProvider>
 </template>
 
 <style>
