@@ -10,13 +10,16 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@codemirror/lang-css": "github:codemirror/lang-css",
     "@nuxt/icon": "^1.7.5",
     "@nuxtjs/color-mode": "^3.5.2",
     "@nuxtjs/tailwindcss": "^6.12.2",
+    "@types/csso": "^5.0.4",
     "@vueuse/core": "^11.2.0",
     "@vueuse/nuxt": "^11.2.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "csso": "^5.0.5",
     "javascript-obfuscator": "^4.1.1",
     "lucide-vue-next": "^0.456.0",
     "nuxt": "^3.14.159",

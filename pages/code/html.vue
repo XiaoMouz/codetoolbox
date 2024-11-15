@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import Title from '~/components/ui/Title.vue'
-import { Codemirror } from 'vue-codemirror'
 import { html } from '@codemirror/lang-html'
-import { EditorState } from '@codemirror/state'
-import { EditorView } from '@codemirror/view'
-import { dracula, noctisLilac } from 'thememirror'
-import ScrollArea from '~/components/ui/scroll-area/ScrollArea.vue'
 import { useToast } from '~/components/ui/toast'
+import * as prettier from 'prettier/standalone'
+import * as htmlParser from 'prettier/parser-html'
+import * as prettierPluginEstree from 'prettier/plugins/estree'
+
 const { toast } = useToast()
 const code = ref(`<html style="color: green">
   <!-- this is a comment -->
@@ -31,48 +30,17 @@ const code = ref(`<html style="color: green">
   </body>
 </html>
 `)
-const extensions = [
-  html(),
-  useDark().value ? dracula : noctisLilac,
-  EditorView.lineWrapping,
-]
-onMounted(() => {
-  console.log(extensions, useDark().value)
-})
-
 const loaded = ref(false)
-
-// Codemirror EditorView instance ref
-const view = shallowRef()
-const handleReady = (payload: {
-  view: EditorView
-  state: EditorState
-  container: HTMLDivElement
-}) => {
-  view.value = payload.view
-  loaded.value = true
-}
-
-function format() {
+async function format() {
   try {
-    let html = code.value
-    var tab = '\t'
-    var result = ''
-    var indent = ''
-
-    html.split(/>\s*</).forEach(function (element) {
-      if (element.match(/^\/\w/)) {
-        indent = indent.substring(tab.length)
-      }
-
-      result += indent + '<' + element + '>\r\n'
-
-      if (element.match(/^<?\w[^>]*[^\/]$/) && !element.startsWith('input')) {
-        indent += tab
-      }
+    let formattedCode = prettier.format(code.value, {
+      parser: 'html',
+      plugins: [htmlParser, prettierPluginEstree],
+      semi: true,
+      singleQuote: true,
+      trailingComma: 'all',
     })
-
-    code.value = result.substring(1, result.length - 3)
+    code.value = await formattedCode
     toast({
       title: 'Formatted',
       description: 'HTML code has been formatted',
@@ -103,6 +71,22 @@ function compress() {
     })
   }
 }
+function copy() {
+  navigator.clipboard.writeText(code.value)
+  toast({
+    title: 'Copied',
+    description: 'CSS code has been copied',
+  })
+}
+function paste() {
+  navigator.clipboard.readText().then((text) => {
+    code.value = text
+    toast({
+      title: 'Pasted',
+      description: 'CSS code has been pasted',
+    })
+  })
+}
 </script>
 <template>
   <div class="flex h-full w-full flex-col items-center">
@@ -112,28 +96,24 @@ function compress() {
         description="HTML Formatter, Compressor"
         icon="mdi:language-html5"
       />
-      <ClientOnly>
-        <ScrollArea class="w-full h-[55vh] rounded shadow-lg">
-          <codemirror
-            v-model="code"
-            :style="{
-              minHeight: '55vh',
-              width: '100%',
-              borderRadius: '0.25rem',
-              textWrap: 'wrap',
-              overflowX: 'hidden',
-            }"
-            :autofocus="true"
-            :indent-with-tab="true"
-            :tab-size="2"
-            :extensions="extensions"
-            @ready="handleReady"
-          />
-        </ScrollArea>
-      </ClientOnly>
+      <AppCodeMirror
+        v-model="code"
+        @loaded="
+          () => {
+            loaded = true
+          }
+        "
+        :lang="html"
+      />
       <div class="flex flex-row gap-2">
         <Button @click="format" variant="secondary">Formatter</Button>
         <Button @click="compress" variant="outline">Compress</Button>
+        <Button @click="copy" variant="ghost"
+          ><Icon name="mdi:content-copy"
+        /></Button>
+        <Button @click="paste" variant="ghost"
+          ><Icon name="mdi:content-paste"
+        /></Button>
       </div>
     </div>
     <div

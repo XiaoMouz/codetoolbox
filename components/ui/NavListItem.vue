@@ -14,7 +14,7 @@ const props = defineProps<{
   <li>
     <div as-child>
       <a
-        @click="() => $router.push(to ?? href ?? '')"
+        @click="() => $router.push(to ?? '')"
         :href="href"
         :class="
           cn(

@@ -1,11 +1,6 @@
 <script setup lang="ts">
 import Title from '~/components/ui/Title.vue'
-import { Codemirror } from 'vue-codemirror'
 import { javascript } from '@codemirror/lang-javascript'
-import { EditorState } from '@codemirror/state'
-import { EditorView } from '@codemirror/view'
-import { dracula, noctisLilac } from 'thememirror'
-import ScrollArea from '~/components/ui/scroll-area/ScrollArea.vue'
 import { useToast } from '~/components/ui/toast'
 import * as prettier from 'prettier/standalone'
 import * as parserBabel from 'prettier/parser-babel'
@@ -15,10 +10,7 @@ import javascriptObfuscator from 'javascript-obfuscator'
 import { minify } from 'terser'
 
 const { toast } = useToast()
-const code =
-  ref(`// Demo code (the actual new parser character stream implementation)
-
-function StringStream(string) {
+const code = ref(`function StringStream(string) {
   this.pos = 0
   this.string = string
 }
@@ -74,24 +66,10 @@ StringStream.prototype = {
     }
   }
 }`)
-const extensions = [
-  javascript(),
-  useDark().value ? dracula : noctisLilac,
-  EditorView.lineWrapping,
-]
+
 onMounted(() => {})
 
 const loaded = ref(false)
-
-const view = shallowRef()
-const handleReady = (payload: {
-  view: EditorView
-  state: EditorState
-  container: HTMLDivElement
-}) => {
-  view.value = payload.view
-  loaded.value = true
-}
 
 async function format() {
   try {
@@ -165,6 +143,22 @@ async function obfuscate() {
     })
   }
 }
+function copy() {
+  navigator.clipboard.writeText(code.value)
+  toast({
+    title: 'Copied',
+    description: 'CSS code has been copied',
+  })
+}
+function paste() {
+  navigator.clipboard.readText().then((text) => {
+    code.value = text
+    toast({
+      title: 'Pasted',
+      description: 'CSS code has been pasted',
+    })
+  })
+}
 </script>
 <template>
   <div class="flex h-full w-full flex-col items-center">
@@ -174,29 +168,25 @@ async function obfuscate() {
         icon="mdi:language-javascript"
         description="JavaScript Formatter, Compressor"
       />
-      <ClientOnly>
-        <ScrollArea class="w-full h-[55vh] rounded shadow-lg">
-          <codemirror
-            v-model="code"
-            :style="{
-              minHeight: '55vh',
-              width: '100%',
-              borderRadius: '0.25rem',
-              textWrap: 'wrap',
-              overflowX: 'hidden',
-            }"
-            :autofocus="true"
-            :indent-with-tab="true"
-            :tab-size="2"
-            :extensions="extensions"
-            @ready="handleReady"
-          />
-        </ScrollArea>
-      </ClientOnly>
+      <AppCodeMirror
+        v-model="code"
+        @loaded="
+          () => {
+            loaded = true
+          }
+        "
+        :lang="javascript"
+      />
       <div class="flex flex-row gap-2">
         <Button @click="format" variant="secondary">Formatter</Button>
         <Button @click="minified" variant="outline">Minify</Button>
         <Button @click="obfuscate" variant="secondary">Obfuscation</Button>
+        <Button @click="copy" variant="ghost"
+          ><Icon name="mdi:content-copy"
+        /></Button>
+        <Button @click="paste" variant="ghost"
+          ><Icon name="mdi:content-paste"
+        /></Button>
       </div>
     </div>
     <div
