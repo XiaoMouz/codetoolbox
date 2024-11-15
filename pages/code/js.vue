@@ -10,7 +10,7 @@ import { useToast } from '~/components/ui/toast'
 import * as prettier from 'prettier/standalone'
 import * as parserBabel from 'prettier/parser-babel'
 import * as prettierPluginEstree from 'prettier/plugins/estree'
-import { obfuscate as javascriptObfuscator } from 'javascript-obfuscator'
+import javascriptObfuscator from 'javascript-obfuscator'
 
 import { minify } from 'terser'
 
@@ -136,7 +136,7 @@ async function minified() {
 
 async function obfuscate() {
   try {
-    const obfuscationResult = javascriptObfuscator(code.value, {
+    const obfuscationResult = javascriptObfuscator.obfuscate(code.value, {
       compact: true,
       controlFlowFlattening: true,
       deadCodeInjection: true,
