@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@codemirror/lang-css':
-        specifier: github:codemirror/lang-css
-        version: https://codeload.github.com/codemirror/lang-css/tar.gz/8bad51270d44d030f6ca45700ad827839358f518(@codemirror/view@6.34.2)
       '@nuxt/icon':
         specifier: ^1.7.5
         version: 1.7.5(magicast@0.3.5)(rollup@4.25.0)(vite@5.4.10(@types/node@22.9.0)(terser@5.36.0))(vue@3.5.12(typescript@5.6.3))
@@ -78,6 +75,9 @@ importers:
         specifier: latest
         version: 4.4.5(vue@3.5.12(typescript@5.6.3))
     devDependencies:
+      '@codemirror/lang-css':
+        specifier: ^6.3.0
+        version: 6.3.0(@codemirror/view@6.34.2)
       '@codemirror/lang-html':
         specifier: ^6.4.9
         version: 6.4.9
@@ -93,6 +93,9 @@ importers:
       '@codemirror/view':
         specifier: ^6.34.2
         version: 6.34.2
+      '@iconify-json/mdi':
+        specifier: ^1.2.1
+        version: 1.2.1
       shadcn-nuxt:
         specifier: ^0.11.2
         version: 0.11.2(magicast@0.3.5)(rollup@4.25.0)
@@ -273,10 +276,6 @@ packages:
 
   '@codemirror/lang-css@6.3.0':
     resolution: {integrity: sha512-CyR4rUNG9OYcXDZwMPvJdtb6PHbBDKUc/6Na2BIwZ6dKab1JQqKa4di+RNRY9Myn7JB81vayKwJeQ7jEdmNVDA==}
-
-  '@codemirror/lang-css@https://codeload.github.com/codemirror/lang-css/tar.gz/8bad51270d44d030f6ca45700ad827839358f518':
-    resolution: {tarball: https://codeload.github.com/codemirror/lang-css/tar.gz/8bad51270d44d030f6ca45700ad827839358f518}
-    version: 6.3.0
 
   '@codemirror/lang-html@6.4.9':
     resolution: {integrity: sha512-aQv37pIMSlueybId/2PVSP6NPnmurFDVmZwzc7jszd2KAF8qd4VBbvNYPXWQq90WIARjsdVkPbw29pszmHws3Q==}
@@ -607,6 +606,9 @@ packages:
 
   '@floating-ui/vue@1.1.5':
     resolution: {integrity: sha512-ynL1p5Z+woPVSwgMGqeDrx6HrJfGIDzFyESFkyqJKilGW1+h/8yVY29Khn0LaU6wHBRwZ13ntG6reiHWK6jyzw==}
+
+  '@iconify-json/mdi@1.2.1':
+    resolution: {integrity: sha512-dSkQU78gsZV6Yxnq78+LuX7jzeFC/5NAmz7O3rh558GimGFcwMVY/OtqRowIzjqJBmMmWZft7wkFV4TrwRXjlg==}
 
   '@iconify/collections@1.0.483':
     resolution: {integrity: sha512-zBN+RzT6yjgME39Lhr2gQ54yGSvVZevg0rXbNbjc8iXDnBafv34gaMvwv2UB9+xAtaENwg6d9L97Qj2qneLqAg==}
@@ -4169,16 +4171,6 @@ snapshots:
     transitivePeerDependencies:
       - '@codemirror/view'
 
-  '@codemirror/lang-css@https://codeload.github.com/codemirror/lang-css/tar.gz/8bad51270d44d030f6ca45700ad827839358f518(@codemirror/view@6.34.2)':
-    dependencies:
-      '@codemirror/autocomplete': 6.18.3(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.34.2)(@lezer/common@1.2.3)
-      '@codemirror/language': 6.10.3
-      '@codemirror/state': 6.4.1
-      '@lezer/common': 1.2.3
-      '@lezer/css': 1.1.9
-    transitivePeerDependencies:
-      - '@codemirror/view'
-
   '@codemirror/lang-html@6.4.9':
     dependencies:
       '@codemirror/autocomplete': 6.18.3(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.34.2)(@lezer/common@1.2.3)
@@ -4405,6 +4397,10 @@ snapshots:
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
+
+  '@iconify-json/mdi@1.2.1':
+    dependencies:
+      '@iconify/types': 2.0.0
 
   '@iconify/collections@1.0.483':
     dependencies:

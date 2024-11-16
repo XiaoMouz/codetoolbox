@@ -89,7 +89,7 @@ const imagePages: Menu[] = [
   {
     title: 'Data URI',
     href: '/image/data2uri',
-    description: 'Image 2 URI, URI 2 Image',
+    description: 'Image to URI, URI to Image',
     icon: 'mdi:image-multiple-outline',
     state: 'wip',
   },

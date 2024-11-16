@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Title from '~/components/ui/Title.vue'
+import Title from '~/components/Title.vue'
 import { javascript } from '@codemirror/lang-javascript'
 import { useToast } from '~/components/ui/toast'
 import * as prettier from 'prettier/standalone'

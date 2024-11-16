@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Title from '~/components/ui/Title.vue'
+import Title from '~/components/Title.vue'
 import { encode, decode } from 'js-base64'
 import { useToast } from '~/components/ui/toast'
 

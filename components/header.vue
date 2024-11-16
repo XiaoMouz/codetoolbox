@@ -8,7 +8,7 @@ import {
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu'
 
-import NavListItem from './ui/NavListItem.vue'
+import NavListItem from './NavListItem.vue'
 
 import { cn } from '@/utils/shadcn'
 
@@ -53,7 +53,7 @@ const $route = useRoute()
                 <NavigationMenuLink as-child class="">
                   <div class="rounded-md bg-custom w-full h-full">
                     <a
-                      href="mou.best"
+                      href="https://mou.best"
                       class="rounded-md bg-custom-child cursor-pointer flex h-full w-full select-none flex-col justify-end from-muted/50 to-muted p-6 no-underline outline-none"
                     >
                       <div

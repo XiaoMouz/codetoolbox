@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { menus } from '@/components/menu'
-import NavListItem from '~/components/ui/NavListItem.vue'
+import NavListItem from '~/components/NavListItem.vue'
 </script>
 <template>
   <div class="flex justify-center items-center">
