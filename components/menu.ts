@@ -72,7 +72,6 @@ const cryptoPages: Menu[] = [
     href: '/crypto/hash',
     description: 'MD5, SHA1 ...',
     icon: 'mdi:lock',
-    state: 'wip',
   },
   {
     title: 'Encrypt',

@@ -76,15 +76,6 @@ function paste() {
 }
 
 const route = useRoute()
-const modeFromUrl = route.query.mode as 'encode' | 'decode'
-const contentFromUrl = route.query.content as string
-
-if (modeFromUrl == 'encode' || modeFromUrl == 'decode') {
-  mode.value = modeFromUrl
-}
-if (contentFromUrl) {
-  content.value = contentFromUrl
-}
 </script>
 <template>
   <div class="flex h-full w-full flex-col items-center mb-8">
