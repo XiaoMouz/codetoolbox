@@ -19,6 +19,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "crypto-js": "^4.2.0",
+    "css-tree": "^3.0.1",
     "csso": "^5.0.5",
     "javascript-obfuscator": "^4.1.1",
     "js-base64": "^3.7.7",
