@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import Title from '~/components/Title.vue'
-import Separator from '~/components/ui/separator/Separator.vue'
 import { useToast } from '~/components/ui/toast'
 import { modeMap } from '~/utils/hash'
 import type { HashMode } from '~/utils/hash'
