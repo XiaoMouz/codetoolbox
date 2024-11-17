@@ -74,7 +74,7 @@ if (contentFromUrl) {
 }
 </script>
 <template>
-  <div class="flex h-full w-full flex-col items-center">
+  <div class="flex h-full w-full flex-col items-center mb-8">
     <div class="w-[70%] h-full flex flex-col items-start gap-6">
       <Title
         title="Base64"
@@ -119,15 +119,7 @@ if (contentFromUrl) {
             Decode
           </div></Button
         >
-        <Button @click="copy" variant="ghost"
-          ><Icon name="mdi:content-copy"
-        /></Button>
-        <Button @click="paste" variant="ghost"
-          ><Icon name="mdi:content-paste"
-        /></Button>
-        <Button @click="share" variant="ghost"
-          ><Icon name="mdi:share-variant"
-        /></Button>
+
         <div class="flex items-center gap-2">
           <Switch id="encodeString" v-model:checked="encodeOrDecodeString"
             ><template #thumb>
@@ -141,6 +133,9 @@ if (contentFromUrl) {
             <Icon name="mdi:table" /> Custom Code Table
           </div></Button
         >
+        <Button @click="copy" variant="ghost"
+          ><Icon name="mdi:content-copy"
+        /></Button>
       </div>
       <div class="grid w-full gap-1.5">
         <Label for="message">Result</Label>
@@ -151,6 +146,14 @@ if (contentFromUrl) {
           class="h-[30vh] w-full cursor-pointer"
           readonly
         />
+      </div>
+      <div class="flex gap-4">
+        <Button @click="copy" variant="ghost"
+          ><Icon name="mdi:content-copy"
+        /></Button>
+        <Button @click="share" variant="ghost"
+          ><Icon name="mdi:share-variant"
+        /></Button>
       </div>
     </div>
   </div>

@@ -254,14 +254,14 @@ if (contentFromUrl) {
           class="h-[30vh] w-full cursor-pointer"
           readonly
         />
-        <div class="flex gap-4">
-          <Button @click="copy" variant="ghost"
-            ><Icon name="mdi:content-copy"
-          /></Button>
-          <Button @click="share" variant="ghost"
-            ><Icon name="mdi:share-variant"
-          /></Button>
-        </div>
+      </div>
+      <div class="flex gap-4">
+        <Button @click="copy" variant="ghost"
+          ><Icon name="mdi:content-copy"
+        /></Button>
+        <Button @click="share" variant="ghost"
+          ><Icon name="mdi:share-variant"
+        /></Button>
       </div>
     </div>
   </div>
