@@ -70,7 +70,7 @@ function paste() {
             Calculate
           </div></Button
         >
-        <span>&nbsp;</span>
+        <span class="cursor-default">&nbsp;</span>
 
         <div>
           <Select v-model="format">
@@ -115,7 +115,7 @@ function paste() {
           id="message"
           @click="copy"
           v-model:model-value="result"
-          class="h-[30vh] w-full cursor-pointer"
+          class="h-[20vh] w-full cursor-pointer"
           readonly
         />
       </div>

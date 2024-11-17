@@ -75,10 +75,9 @@ const cryptoPages: Menu[] = [
   },
   {
     title: 'Encrypt',
-    href: '/crypto/crypt',
+    href: '/crypto/crypto',
     description: 'AES, DES, RSA ...',
     icon: 'mdi:shield-lock-outline',
-    state: 'wip',
   },
 ]
 
