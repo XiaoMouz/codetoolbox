@@ -133,8 +133,8 @@ if (contentFromUrl) {
             <Icon name="mdi:table" /> Custom Code Table
           </div></Button
         >
-        <Button @click="copy" variant="ghost"
-          ><Icon name="mdi:content-copy"
+        <Button @click="paste" variant="ghost"
+          ><Icon name="mdi:content-paste"
         /></Button>
       </div>
       <div class="grid w-full gap-1.5">
