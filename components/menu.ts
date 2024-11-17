@@ -60,7 +60,6 @@ const cryptoPages: Menu[] = [
     href: '/crypto/unicode',
     description: 'Unicode Encode, Unicode Decode',
     icon: 'mdi:unicode',
-    state: 'wip',
   },
   {
     title: 'URL',
