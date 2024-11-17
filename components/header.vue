@@ -23,7 +23,8 @@ const $route = useRoute()
     class="w-full flex flex-nowrap justify-between items-center pt-5 pl-10 pr-20"
   >
     <div class="flex items-center">
-      &nbsp;<Icon
+      <span class="cursor-default">&nbsp;</span
+      ><Icon
         name="mdi:home"
         class="flex md:hidden size-5 cursor-pointer"
         @click="$router.push('/')"

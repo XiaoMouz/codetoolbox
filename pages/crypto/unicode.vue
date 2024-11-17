@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Title from '~/components/Title.vue'
+import Separator from '~/components/ui/separator/Separator.vue'
 import { useToast } from '~/components/ui/toast'
 
 const { toast } = useToast()
@@ -122,7 +123,7 @@ if (contentFromUrl) {
       <Title
         title="Unicode"
         icon="mdi:unicode"
-        description="Convert to HTML entity or "
+        description="Convert to HTML entity or unicode"
       />
       <Textarea class="h-[30vh] w-full" v-model:model-value="content" />
       <div class="flex flex-row gap-4 flex-wrap items-center">
@@ -162,6 +163,7 @@ if (contentFromUrl) {
             Decode
           </div></Button
         >
+        <span>&nbsp;</span>
         <div v-if="mode != 'decode'">
           <Select v-model="format">
             <SelectTrigger>
@@ -230,15 +232,13 @@ if (contentFromUrl) {
           </Select>
         </div>
 
-        <div></div>
-
         <div v-if="mode != 'decode'" class="flex items-center gap-2">
-          <Switch id="encodeString" v-model:checked="completeEncoding"
+          <Switch id="completeEncoding" v-model:checked="completeEncoding"
             ><template #thumb>
               <Icon v-if="completeEncoding" name="mdi:alphabetical-variant" />
               <Icon v-else name="mdi:alphabetical-variant-off" /> </template
           ></Switch>
-          <Label for="encodeString">Complete Encode</Label>
+          <Label for="completeEncoding">Complete Encode</Label>
         </div>
 
         <Button @click="paste" variant="ghost"

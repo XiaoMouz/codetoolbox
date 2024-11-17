@@ -62,11 +62,10 @@ const cryptoPages: Menu[] = [
     icon: 'mdi:unicode',
   },
   {
-    title: 'URL',
+    title: 'URI Coder',
     href: '/crypto/urlencode',
-    description: 'URL Encode, URL Decode',
+    description: 'URI Encode, URI Decode',
     icon: 'mdi:link',
-    state: 'wip',
   },
   {
     title: 'Hash',
