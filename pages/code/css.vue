@@ -5,7 +5,6 @@ import { useToast } from '~/components/ui/toast'
 import * as prettier from 'prettier/standalone'
 import * as postcss from 'prettier/parser-postcss'
 import * as prettierPluginEstree from 'prettier/plugins/estree'
-import { minify, syntax } from 'csso'
 
 const { toast } = useToast()
 const code = ref(`@import url('something.css');
@@ -70,18 +69,24 @@ async function format() {
   }
 }
 
-function minified() {
+async function minified() {
   try {
-    const res = minify(code.value, {
-      restructure: true,
-      sourceMap: false,
+    const result = await fetch('/api/code/css', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams({ code: code.value }),
     })
-    code.value = res.css
+    const data = await result.json()
+
+    code.value = data?.result?.styles
     toast({
       title: 'Compressed',
       description: 'CSS code has been compressed',
     })
   } catch (e: any) {
+    console.error(e)
     toast({
       title: 'Error',
       description: e.message,
