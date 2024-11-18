@@ -85,9 +85,8 @@ const imagePages: Menu[] = [
   {
     title: 'Data URI',
     href: '/image/data2uri',
-    description: 'Image to URI, URI to Image',
+    description: 'Image to Data URI',
     icon: 'mdi:image-multiple-outline',
-    state: 'wip',
   },
   {
     title: 'Generate QR Code',
@@ -128,11 +127,11 @@ export const menus: {
     menu: cryptoPages,
   },
   {
-    title: 'Image Processing',
+    title: 'Processing',
     menu: imagePages,
   },
   {
-    title: 'Covert',
+    title: 'Convert',
     menu: converMenu,
   },
 ]

@@ -75,6 +75,14 @@ function paste() {
   })
 }
 
+onMounted(() => {
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'c' && (e.ctrlKey || e.metaKey)) {
+      copy()
+    }
+  })
+})
+
 const route = useRoute()
 </script>
 <template>

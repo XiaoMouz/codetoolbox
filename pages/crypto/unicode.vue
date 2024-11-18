@@ -92,6 +92,14 @@ function share() {
   })
 }
 
+onMounted(() => {
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'c' && (e.ctrlKey || e.metaKey)) {
+      copy()
+    }
+  })
+})
+
 const route = useRoute()
 const modeFromUrl = route.query.mode as 'encode' | 'decode'
 const formatFromUrl = route.query.format as

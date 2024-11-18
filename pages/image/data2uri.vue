@@ -14,15 +14,25 @@ function copy() {
   })
 }
 
-function paste() {
-  navigator.clipboard.readText().then((text) => {
-    result.value = text
-    toast({
-      title: 'Pasted',
-      description: 'Text has been pasted',
-    })
-  })
+function decode(file: any) {
+  // get DataURI from image file
+  const reader = new FileReader()
+  reader.onload = (e) => {
+    const dataURI = e.target?.result
+    if (typeof dataURI === 'string') {
+      result.value = dataURI
+    }
+  }
+  reader.readAsDataURL(file)
 }
+
+onMounted(() => {
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'c' && (e.ctrlKey || e.metaKey)) {
+      copy()
+    }
+  })
+})
 </script>
 
 <template>
@@ -33,7 +43,7 @@ function paste() {
         icon="mdi:image-multiple-outline"
         description="Convert image, might not just Image, or Json and more..."
       />
-      <Uploader class="w-full" />
+      <Uploader @callback="decode" class="w-full" />
       <div class="grid w-full gap-1.5">
         <Label for="message">Result</Label>
         <Textarea

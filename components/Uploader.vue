@@ -60,17 +60,24 @@ const paste = () => {
       }
     }
   })
+  toast({
+    title: 'Clipboard',
+    description: 'Reading image from clipboard',
+  })
 }
 
-// key binding
-window.addEventListener('keydown', (event) => {
-  if (event.key === 'v' && (event.ctrlKey || event.metaKey)) {
-    paste()
-  }
+onMounted(() => {
+  // key binding
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'v' && (e.ctrlKey || e.metaKey)) {
+      paste()
+    }
+  })
 })
 
 const emit = defineEmits<{
   decoded: [value: string]
+  callback: [value: any]
 }>()
 
 const onDragOver = () => {
@@ -106,20 +113,7 @@ const uploadFiles = (files: any) => {
   let uploadedFiles = 0
 
   const uploadFile = (file: any) => {
-    // get DataURI from image file
-    const reader = new FileReader()
-    reader.onload = (e) => {
-      const dataURI = e.target?.result
-      console.log(dataURI)
-      emit('decoded', dataURI?.toString() || '')
-      uploadedFiles++
-    }
-    reader.onprogress = (e) => {
-      if (e.lengthComputable) {
-        progress.value = Math.round((e.loaded / e.total) * 100)
-      }
-    }
-    reader.readAsDataURL(file)
+    emit('callback', file)
   }
 
   for (const file of files) {
