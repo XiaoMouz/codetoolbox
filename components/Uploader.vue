@@ -1,6 +1,6 @@
 <template>
   <div
-    class="border relative border-dashed border-foreground transition-all duration-300 rounded-md p-4 text-center cursor-pointer py-8 hover:bg-shadow"
+    class="border relative border-dashed border-foreground transition-all duration-300 rounded-md p-4 text-center cursor-pointer py-8 hover:bg-gray-400 dark:hover:bg-gray-800"
     @dragover.prevent="onDragOver"
     @dragleave="onDragLeave"
     @drop.prevent="onDrop"

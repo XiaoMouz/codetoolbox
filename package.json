@@ -28,6 +28,7 @@
     "radix-vue": "^1.9.9",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7",
+    "tc-qrcode": "^1.1.0",
     "terser": "^5.36.0",
     "thememirror": "^2.0.1",
     "vue": "latest",
