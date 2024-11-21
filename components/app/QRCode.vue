@@ -5,15 +5,12 @@ import type { IEncodeOption } from 'tc-qrcode/type'
 
 export default {
   props: {
-    content: {
-      type: String,
-      required: true,
-    },
     options: {
       type: Object as () => IEncodeOption,
       default: () => ({
+        text: 'https://mou.best',
         size: 256,
-        typeNumber: 4,
+        typeNumber: 2,
         foreground: '#000000',
         background: '#ffffff',
         correctLevel: '2',
@@ -24,7 +21,6 @@ export default {
     },
   },
   setup(props) {
-    props.options.text = props.content
     return () =>
       h('img', {
         src: qrcode.encodeAsBase64(props.options),
