@@ -93,7 +93,7 @@ const imagePages: Menu[] = [
     href: '/image/genQRcode',
     description: 'Generate QR Code',
     icon: 'mdi:qrcode',
-    state: 'wip',
+    state: 'beta',
   },
   {
     title: 'PNG to Favicon',

@@ -21,11 +21,12 @@ export default {
     },
   },
   setup(props) {
-    return () =>
-      h('img', {
+    return () => {
+      return h('img', {
         src: qrcode.encodeAsBase64(props.options),
         alt: 'QR Code',
       })
+    }
   },
 }
 </script>
