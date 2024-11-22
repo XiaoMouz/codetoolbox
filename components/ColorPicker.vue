@@ -178,7 +178,7 @@ const gradient = (startColor: string, endColor: string, step: number) => {
     "
   >
     <div
-      class="colorBtn"
+      class="colorBtn rounded"
       :style="`background-color: ${showColor}`"
       @click="openPanel"
       :class="{ disabled: disabled }"

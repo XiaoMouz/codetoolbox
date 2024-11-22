@@ -6,6 +6,8 @@ import Label from '~/components/ui/label/Label.vue'
 
 const dark = useDark()
 
+const loaded = ref(false)
+
 const content = ref('')
 
 const selectedForeColor = ref<string>(dark.value ? '#ffffff' : '#000000')
@@ -60,10 +62,14 @@ function reciveImage(e: Event) {
     reader.readAsDataURL(file)
   }
 }
+
+onMounted(() => {
+  loaded.value = true
+})
 </script>
 <template>
   <div class="flex h-full w-full flex-col items-center mb-8">
-    <div class="w-[70%] h-full flex flex-col items-start gap-6">
+    <div v-show="loaded" class="w-[70%] h-full flex flex-col items-start gap-6">
       <Title
         title="Generate QR Code"
         icon="mdi:qrcode"
@@ -191,6 +197,12 @@ function reciveImage(e: Event) {
           </div>
         </ClientOnly>
       </div>
+    </div>
+    <div
+      v-show="!loaded"
+      class="flex items-center justify-center w-full h-full"
+    >
+      <LoadingCycle />
     </div>
   </div>
 </template>
