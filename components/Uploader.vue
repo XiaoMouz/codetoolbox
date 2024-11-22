@@ -9,6 +9,7 @@
     <input
       type="file"
       ref="fileInput"
+      :accept="props.accept"
       @change="onFileChange"
       style="display: none"
       multiple
@@ -41,6 +42,10 @@ import { ref, type VNodeRef } from 'vue'
 import { useToast } from './ui/toast'
 
 const { toast } = useToast()
+
+const props = defineProps<{
+  accept?: string
+}>()
 
 const message = ref('Click or drag file to process file')
 const isUploading = ref(false)

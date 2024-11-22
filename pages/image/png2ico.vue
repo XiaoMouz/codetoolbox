@@ -1,3 +1,148 @@
+<script setup lang="ts">
+//import png2icons from 'png2icons'
+
+const format = ref<'ico' | 'icns'>('ico')
+const innerFormat = ref<'png' | 'bmp'>('png')
+const noc = ref(0)
+//scaling is map
+const options = {
+  0: 'Nearest Neighbor',
+  1: 'Bilinear',
+  2: 'Bicubic',
+  5: 'Bicubic 2',
+  3: 'Bezier',
+  4: 'Hermite',
+}
+const scaling = ref<0 | 1 | 2 | 3 | 4 | 5>(0)
+
+const useForExe = ref(false)
+
+const selectedSize = ref([])
+
+async function convert(file: File) {
+  //create a buffer for file, not arraybuffer
+  const buffer = await new Promise<Buffer>((resolve, reject) => {
+    const reader = new FileReader()
+
+    reader.onload = () => {
+      const arrayBuffer = reader.result as ArrayBuffer
+      const buffer = Buffer.from(arrayBuffer)
+      resolve(buffer)
+    }
+
+    reader.onerror = () => {
+      reject(new Error('Failed'))
+    }
+
+    reader.readAsArrayBuffer(file)
+  })
+  if (format.value == 'ico') {
+    // png2icons.createICO(
+    //   buffer,
+    //   scaling.value,
+    //   noc.value,
+    //   innerFormat.value == 'png' ? true : false
+    // )
+  }
+}
+</script>
 <template>
-  {{ $route.path }}
+  <div class="flex h-full w-full flex-col items-center mb-8">
+    <div class="w-[70%] h-full flex flex-col items-start gap-6">
+      <Title
+        title="PNG to ICO"
+        icon="mdi:image-multiple-outline"
+        description="PNG to ICO or Apple ICNS converter"
+      />
+      <Uploader @callback="convert" accept="image/png" class="w-full" />
+      <div class="flex gap-4 items-baseline">
+        <div>
+          <Label for="format">Output format</Label>
+          <Select id="format" v-model="format">
+            <SelectTrigger>
+              <SelectValue placeholder="Select a format" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectItem value="ico">Microsoft ICO (.ico)</SelectItem>
+                <SelectItem value="icns">Apple ICNS (.icns)</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
+
+        <div v-if="format == 'ico'">
+          <Select id="innerFormat" v-model="innerFormat">
+            <Label for="innerFormat">Inner Format</Label>
+            <SelectTrigger>
+              <SelectValue placeholder="Select an inner format" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectItem value="png">PNG</SelectItem>
+                <SelectItem value="bmp">BMP</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
+        <div v-if="format == 'ico'">
+          <NumberField
+            id="noc"
+            type="number"
+            v-model="noc"
+            :default-value="0"
+            :min="0"
+            :max="256"
+          >
+            <Label for="noc">Number of Colors</Label>
+            <NumberFieldContent>
+              <NumberFieldDecrement />
+              <NumberFieldInput />
+              <NumberFieldIncrement />
+            </NumberFieldContent>
+          </NumberField>
+        </div>
+        <div class="flex items-center space-x-2">
+          <Switch id="forExe" v-model="useForExe" />
+          <Label for="forExe">ICO for EXE icon</Label>
+        </div>
+        <div>
+          <Label for="scaling">Scaling Algorithm</Label>
+          <Select
+            id="scaling"
+            :model-value="scaling.toString()"
+            @update:model-value="
+              (v) => {
+                if (v) scaling = parseInt(v) as 0 | 1 | 2 | 3 | 4 | 5
+              }
+            "
+          >
+            <SelectTrigger>
+              <SelectValue placeholder="Select a scaling algorithm" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectItem
+                  v-for="(value, key) in options"
+                  :value="key.toString()"
+                >
+                  {{ value }}
+                </SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
+      <!-- <div>
+        <ToggleGroup v-model:model-value="selectedSize">
+          <ToggleGroupItem value="left"> 1 </ToggleGroupItem>
+          <ToggleGroupItem value="center"> 2 </ToggleGroupItem>
+          <ToggleGroupItem value="right"> 3 </ToggleGroupItem>
+        </ToggleGroup>
+      </div> -->
+      <div class="grid w-full gap-1.5">
+        <Label>Result</Label>
+      </div>
+    </div>
+  </div>
 </template>

@@ -97,7 +97,7 @@ const imagePages: Menu[] = [
   },
   {
     title: 'PNG to Favicon',
-    href: '/image/png2icon',
+    href: '/image/png2ico',
     description: 'PNG to Favicon',
     icon: 'mdi:alpha-f-box-outline',
     state: 'wip',
@@ -119,15 +119,15 @@ export const menus: {
   icon?: string
 }[] = [
   {
-    title: 'Code Compression',
+    title: 'Code',
     menu: codePages,
   },
   {
-    title: 'Encoding Processing',
+    title: 'Encode and Security',
     menu: cryptoPages,
   },
   {
-    title: 'Processing',
+    title: 'Process Image',
     menu: imagePages,
   },
   {
