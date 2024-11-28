@@ -1,0 +1,66 @@
+{
+    "menu": {
+        "code": {
+            "html": {
+                "title": "HTML",
+                "description": "压缩，格式化"
+            },
+            "javascript": {
+                "title": "JavaScript",
+                "description": "压缩，格式化，混淆"
+            },
+            "css": {
+                "title": "CSS",
+                "description": "压缩，格式化"
+            },
+            "json": {
+                "title": "JSON",
+                "description": "转换，格式化，检查"
+            },
+            "yaml": {
+                "title": "YAML",
+                "description": "转换，格式化，检查"
+            },
+            "toml": {
+                "title": "TOML",
+                "description": "转换，格式化，检查"
+            },
+            "base64": {
+                "title": "Base64",
+                "description": "Base64 编码，Base64 解码"
+            },
+            "unicode": {
+                "title": "Unicode",
+                "description": "Unicode 编码，Unicode 解码"
+            },
+            "urlencode": {
+                "title": "URI 编码器",
+                "description": "URI 编码，URI 解码"
+            },
+            "hash": {
+                "title": "哈希",
+                "description": "MD5，SHA1 ..."
+            },
+            "encrypt": {
+                "title": "加密",
+                "description": "AES，DES，RSA ..."
+            },
+            "data2uri": {
+                "title": "数据 URI",
+                "description": "图片转 Data URI"
+            },
+            "genQRcode": {
+                "title": "生成二维码",
+                "description": "生成二维码"
+            },
+            "png2ico": {
+                "title": "PNG 转 Favicon",
+                "description": "PNG 转 Favicon"
+            },
+            "cidr2ip": {
+                "title": "CIDR 转 IP",
+                "description": "CIDR 转 IP 范围"
+            }
+        }
+    }
+}

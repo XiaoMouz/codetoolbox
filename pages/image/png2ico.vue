@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
+
 //import png2icons from 'png2icons'
 
 const format = ref<'ico' | 'icns'>('ico')
@@ -49,6 +51,28 @@ async function convert(file: File) {
 <template>
   <div class="flex h-full w-full flex-col items-center mb-8">
     <div class="w-[70%] h-full flex flex-col items-start gap-6">
+      <Alert class="flex">
+        <Icon class="size-4 mr-2 mt-1" name="mdi:alert-circle-outline" />
+        <div>
+          <AlertTitle>Working in Progress</AlertTitle>
+          <AlertDescription class="flex gap-1">
+            You still use it on
+            <a
+              class="transition-all font-bold flex items-center hover:underline hover:underline-offset-4"
+              target="_blank"
+              href="https://lolicon.dev/#/image/png2ico"
+              ><Icon name="mdi:link-variant"></Icon>lolicon.dev</a
+            >
+            or
+            <a
+              class="transition-all font-bold flex items-center hover:underline hover:underline-offset-4"
+              target="_blank"
+              href="https://xiaomouz.github.io/codetoolbox/#/image/png2ico"
+              ><Icon name="mdi:link-variant"></Icon>xiaomouz.github.io</a
+            >
+          </AlertDescription>
+        </div>
+      </Alert>
       <Title
         title="PNG to ICO"
         icon="mdi:image-multiple-outline"

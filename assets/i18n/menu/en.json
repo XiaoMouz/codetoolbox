@@ -1,0 +1,66 @@
+{
+    "menu": {
+        "code": {
+            "html": {
+                "title": "HTML",
+                "description": "Compress, Formatter"
+            },
+            "javascript": {
+                "title": "JavaScript",
+                "description": "Compress, Formatter, Obfuscation"
+            },
+            "css": {
+                "title": "CSS",
+                "description": "Compress, Formatter"
+            },
+            "json": {
+                "title": "JSON",
+                "description": "Convert, Formatter, Checker"
+            },
+            "yaml": {
+                "title": "YAML",
+                "description": "Convert, Formatter, Checker"
+            },
+            "toml": {
+                "title": "TOML",
+                "description": "Convert, Formatter, Checker"
+            },
+            "base64": {
+                "title": "Base64",
+                "description": "Base64 Encode, Base64 Decode"
+            },
+            "unicode": {
+                "title": "Unicode",
+                "description": "Unicode Encode, Unicode Decode"
+            },
+            "urlencode": {
+                "title": "URI Coder",
+                "description": "URI Encode, URI Decode"
+            },
+            "hash": {
+                "title": "Hash",
+                "description": "MD5, SHA1 ..."
+            },
+            "encrypt": {
+                "title": "Encrypt",
+                "description": "AES, DES, RSA ..."
+            },
+            "data2uri": {
+                "title": "Data URI",
+                "description": "Image to Data URI"
+            },
+            "genQRcode": {
+                "title": "Generate QR Code",
+                "description": "Generate QR Code"
+            },
+            "png2ico": {
+                "title": "PNG to Favicon",
+                "description": "PNG to Favicon"
+            },
+            "cidr2ip": {
+                "title": "CIDR to IP",
+                "description": "CIDR to IP Range"
+            }
+        }
+    }
+}

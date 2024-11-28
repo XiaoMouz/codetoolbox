@@ -7,6 +7,14 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
 
 import NavListItem from './NavListItem.vue'
 
@@ -96,6 +104,17 @@ const $route = useRoute()
       </NavigationMenuList>
     </NavigationMenu>
     <div class="flex flex-row gap-6">
+      <DropdownMenu>
+        <DropdownMenuTrigger>Open</DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuLabel>My Account</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>Profile</DropdownMenuItem>
+          <DropdownMenuItem>Billing</DropdownMenuItem>
+          <DropdownMenuItem>Team</DropdownMenuItem>
+          <DropdownMenuItem>Subscription</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
       <div
         class="flex w-10 h-10 items-center justify-center rounded-full transition duration-300 cursor-pointer hover:bg-slate-400 dark:hover:bg-gray-400 fill-gray-900 dark:fill-slate-100 ease-in-out"
         @click="isDark ? (isDark = false) : (isDark = true)"
@@ -117,7 +136,7 @@ const $route = useRoute()
 
 <style scoped>
 .bg-custom {
-  background: url('/favicon.ico');
+  background: url('/image.ico');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

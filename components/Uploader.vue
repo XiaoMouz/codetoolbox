@@ -47,7 +47,7 @@ const props = defineProps<{
   accept?: string
 }>()
 
-const message = ref('Click or drag file to process file')
+const message = ref('Click / Drag / Ctrl + V')
 const isUploading = ref(false)
 const fileInput = ref<VNodeRef | null>(null)
 const progress = ref(0)
@@ -90,7 +90,7 @@ const onDragOver = () => {
 }
 
 const onDragLeave = () => {
-  message.value = 'Click or drag file to process file'
+  message.value = 'Click / Drag / Ctrl + V'
 }
 
 const onDrop = (event: any) => {
@@ -125,7 +125,7 @@ const uploadFiles = (files: any) => {
     message.value = `Handling ${uploadedFiles + 1} of ${totalFiles}`
     uploadFile(file)
     isUploading.value = false
-    message.value = 'Click or drag file to process file'
+    message.value = 'Click / Drag / Ctrl + V'
   }
 }
 </script>
