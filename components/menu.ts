@@ -109,7 +109,6 @@ const converMenu: Menu[] = [
     href: '/convert/cidr2ip',
     description: 'CIDR to IP Range',
     icon: 'mdi:ip-network-outline',
-    state: 'wip',
   },
 ]
 
@@ -131,7 +130,7 @@ export const menus: {
     menu: imagePages,
   },
   {
-    title: 'Convert',
+    title: 'Network',
     menu: converMenu,
   },
 ]

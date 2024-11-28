@@ -29,6 +29,9 @@ importers:
       '@vueuse/nuxt':
         specifier: ^11.2.0
         version: 11.2.0(magicast@0.3.5)(nuxt@3.14.159(@parcel/watcher@2.5.0)(@types/node@22.9.0)(ioredis@5.4.1)(magicast@0.3.5)(rollup@4.25.0)(terser@5.36.0)(typescript@5.6.3)(vite@5.4.10(@types/node@22.9.0)(terser@5.36.0)))(rollup@4.25.0)(vue@3.5.12(typescript@5.6.3))
+      cidr-regex:
+        specifier: ^4.1.1
+        version: 4.1.1
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -47,6 +50,9 @@ importers:
       lucide-vue-next:
         specifier: ^0.456.0
         version: 0.456.0(vue@3.5.12(typescript@5.6.3))
+      netmask:
+        specifier: ^2.0.2
+        version: 2.0.2
       nuxt:
         specifier: ^3.14.159
         version: 3.14.159(@parcel/watcher@2.5.0)(@types/node@22.9.0)(ioredis@5.4.1)(magicast@0.3.5)(rollup@4.25.0)(terser@5.36.0)(typescript@5.6.3)(vite@5.4.10(@types/node@22.9.0)(terser@5.36.0))
@@ -108,6 +114,9 @@ importers:
       '@types/css-tree':
         specifier: ^2.3.9
         version: 2.3.9
+      '@types/netmask':
+        specifier: ^2.0.5
+        version: 2.0.5
       clean-css:
         specifier: ^5.3.3
         version: 5.3.3
@@ -1096,6 +1105,9 @@ packages:
   '@types/minimatch@3.0.5':
     resolution: {integrity: sha512-Klz949h02Gz2uZCMGwDUSDS1YBlTdDDgbWHi+81l29tQALUtvz4rAYi5uoVhE5Lagoq6DeqAUlbrHvW/mXDgdQ==}
 
+  '@types/netmask@2.0.5':
+    resolution: {integrity: sha512-9Q5iw9+pHZBVLDG700dlQSWWHTYvOb8KfPjfQTNckCYky4IyjV2xh81+RgC1CCwqv92bYLpz1cVKyJav0B88uQ==}
+
   '@types/node@22.9.0':
     resolution: {integrity: sha512-vuyHg81vvWA1Z1ELfvLko2c8f34gyA0zaic0+Rllc5lbCnbSyuvb2Oxpm6TAUAC/2xZN3QGqxBNggD1nNR2AfQ==}
 
@@ -1489,6 +1501,10 @@ packages:
   ci-info@4.0.0:
     resolution: {integrity: sha512-TdHqgGf9odd8SXNuxtUBVx8Nv+qZOejE6qyqiy5NtbYYQOeFa6zmHkxlPzmaLxWWHsU6nJmB7AETdVPi+2NBUg==}
     engines: {node: '>=8'}
+
+  cidr-regex@4.1.1:
+    resolution: {integrity: sha512-ekKcVp+iRB9zlKFXyx7io7nINgb0oRjgRdXNEodp1OuxRui8FXr/CA40Tz1voWUp9DPPrMyQKy01vJhDo4N1lw==}
+    engines: {node: '>=14'}
 
   citty@0.1.6:
     resolution: {integrity: sha512-tskPPKEs8D2KPafUypv2gxwJP8h/OaJmC82QQGGDQcHvXX43xF2VDACcJVmZ0EuSxkpO9Kc4MlrA3q0+FG58AQ==}
@@ -2258,6 +2274,10 @@ packages:
     resolution: {integrity: sha512-2YZsvl7jopIa1gaePkeMtd9rAcSjOOjPtpcLlOeusyO+XH2SK5ZcT+UCrElPP+WVIInh2TzeI4XW9ENaSLVVHA==}
     engines: {node: '>=12.22.0'}
 
+  ip-regex@5.0.0:
+    resolution: {integrity: sha512-fOCG6lhoKKakwv+C6KdsOnGvgXnmgfmp0myi3bcNwj3qfwPAxRKWEuFhvEFF7ceYIz6+1jRZ+yguLFAmUNPEfw==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+
   iron-webcrypto@1.2.1:
     resolution: {integrity: sha512-feOM6FaSr6rEABp/eDfVseKyTMDt+KGpeB35SkVn9Tyn0CqvVsY3EwI0v5i8nMHyJnzCIQf7nsy3p41TPkJZhg==}
 
@@ -2681,6 +2701,10 @@ packages:
   negotiator@0.6.3:
     resolution: {integrity: sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==}
     engines: {node: '>= 0.6'}
+
+  netmask@2.0.2:
+    resolution: {integrity: sha512-dBpDMdxv9Irdq66304OLfEmQ9tbNRFnFTuZiLo+bD+r332bBmMJ8GBLXklIXXgxd3+v9+KUnZaUR5PJMa75Gsg==}
+    engines: {node: '>= 0.4.0'}
 
   nitropack@2.10.4:
     resolution: {integrity: sha512-sJiG/MIQlZCVSw2cQrFG1H6mLeSqHlYfFerRjLKz69vUfdu0EL2l0WdOxlQbzJr3mMv/l4cOlCCLzVRzjzzF/g==}
@@ -5114,6 +5138,8 @@ snapshots:
 
   '@types/minimatch@3.0.5': {}
 
+  '@types/netmask@2.0.5': {}
+
   '@types/node@22.9.0':
     dependencies:
       undici-types: 6.19.8
@@ -5627,6 +5653,10 @@ snapshots:
   chownr@2.0.0: {}
 
   ci-info@4.0.0: {}
+
+  cidr-regex@4.1.1:
+    dependencies:
+      ip-regex: 5.0.0
 
   citty@0.1.6:
     dependencies:
@@ -6410,6 +6440,8 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  ip-regex@5.0.0: {}
+
   iron-webcrypto@1.2.1: {}
 
   is-arguments@1.1.1:
@@ -6828,6 +6860,8 @@ snapshots:
   nanotar@0.1.1: {}
 
   negotiator@0.6.3: {}
+
+  netmask@2.0.2: {}
 
   nitropack@2.10.4(typescript@5.6.3):
     dependencies:

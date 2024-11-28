@@ -105,7 +105,7 @@ function paste() {
         "
         :lang="html"
       />
-      <div class="flex flex-row gap-2">
+      <div class="flex flex-wrap flex-row gap-2">
         <Button @click="format" variant="secondary">Formatter</Button>
         <Button @click="compress" variant="outline">Compress</Button>
         <Button @click="copy" variant="ghost"

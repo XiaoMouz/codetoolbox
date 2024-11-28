@@ -3,7 +3,7 @@ import { menus } from '@/components/menu'
 import NavListItem from '~/components/NavListItem.vue'
 </script>
 <template>
-  <div class="flex flex-col justify-center items-center">
+  <div class="flex flex-col flex-wrap justify-center items-center">
     <div v-for="item in menus" :key="item.title">
       <h2 class="text-center md:text-left text-2xl font-bold">
         {{ item.title }}
