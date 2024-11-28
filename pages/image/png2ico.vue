@@ -55,7 +55,7 @@ async function convert(file: File) {
         description="PNG to ICO or Apple ICNS converter"
       />
       <Uploader @callback="convert" accept="image/png" class="w-full" />
-      <div class="flex gap-4 items-baseline">
+      <div class="flex flex-wrap gap-4 items-start">
         <div>
           <Label for="format">Output format</Label>
           <Select id="format" v-model="format">
@@ -102,9 +102,9 @@ async function convert(file: File) {
             </NumberFieldContent>
           </NumberField>
         </div>
-        <div class="flex items-center space-x-2">
-          <Switch id="forExe" v-model="useForExe" />
+        <div class="flex flex-col gap-1">
           <Label for="forExe">ICO for EXE icon</Label>
+          <Switch id="forExe" v-model="useForExe" />
         </div>
         <div>
           <Label for="scaling">Scaling Algorithm</Label>
