@@ -102,9 +102,11 @@ async function convert(file: File) {
             </NumberFieldContent>
           </NumberField>
         </div>
-        <div class="flex flex-col gap-1">
+        <div class="flex h-full flex-col gap-1">
           <Label for="forExe">ICO for EXE icon</Label>
-          <Switch id="forExe" v-model="useForExe" />
+          <div class="h-full flex justify-center items-center">
+            <Switch id="forExe" v-model="useForExe" />
+          </div>
         </div>
         <div>
           <Label for="scaling">Scaling Algorithm</Label>
