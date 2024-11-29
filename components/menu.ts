@@ -1,6 +1,6 @@
 type Menu = {
   title: string
-  href: string
+  to: string
   icon?: string
   description: string
   state?: MenusState
@@ -10,39 +10,39 @@ export type MenusState = 'default' | 'wip' | 'beta'
 const codePages: Menu[] = [
   {
     title: 'HTML',
-    href: '/code/html',
+    to: '/code/html',
     description: 'Compress, Formatter',
     icon: 'mdi:language-html5',
   },
   {
     title: 'JavaScript',
-    href: '/code/js',
+    to: '/code/js',
     description: 'Compress, Formatter, Obfuscation',
     icon: 'mdi:language-javascript',
   },
   {
     title: 'CSS',
-    href: '/code/css',
+    to: '/code/css',
     description: 'Compress, Formatter',
     icon: 'mdi:language-css3',
   },
   {
     title: 'JSON',
-    href: '/code/json',
+    to: '/code/json',
     description: 'Convert, Formatter, Checker',
     icon: 'mdi:code-json',
     state: 'wip',
   },
   {
     title: 'YAML',
-    href: '/code/yaml',
+    to: '/code/yaml',
     description: 'Convert, Formatter, Checker',
     icon: 'file-icons:yaml-alt4',
     state: 'wip',
   },
   {
     title: 'TOML',
-    href: '/code/toml',
+    to: '/code/toml',
     description: 'Convert, Formatter, Checker',
     icon: 'file-icons:toml',
     state: 'wip',
@@ -51,31 +51,31 @@ const codePages: Menu[] = [
 const cryptoPages: Menu[] = [
   {
     title: 'Base64',
-    href: '/crypto/base64',
+    to: '/crypto/base64',
     description: 'Base64 Encode, Base64 Decode',
     icon: 'mdi:code-parentheses',
   },
   {
     title: 'Unicode',
-    href: '/crypto/unicode',
+    to: '/crypto/unicode',
     description: 'Unicode Encode, Unicode Decode',
     icon: 'mdi:unicode',
   },
   {
     title: 'URI Coder',
-    href: '/crypto/urlencode',
+    to: '/crypto/urlencode',
     description: 'URI Encode, URI Decode',
     icon: 'mdi:link',
   },
   {
     title: 'Hash',
-    href: '/crypto/hash',
+    to: '/crypto/hash',
     description: 'MD5, SHA1 ...',
     icon: 'mdi:lock',
   },
   {
     title: 'Encrypt',
-    href: '/crypto/crypto',
+    to: '/crypto/crypto',
     description: 'AES, DES, RSA ...',
     icon: 'mdi:shield-lock-outline',
   },
@@ -84,20 +84,20 @@ const cryptoPages: Menu[] = [
 const imagePages: Menu[] = [
   {
     title: 'Data URI',
-    href: '/image/data2uri',
+    to: '/image/data2uri',
     description: 'Image to Data URI',
     icon: 'mdi:image-multiple-outline',
   },
   {
     title: 'Generate QR Code',
-    href: '/image/genQRcode',
+    to: '/image/genQRcode',
     description: 'Generate QR Code',
     icon: 'mdi:qrcode',
     state: 'beta',
   },
   {
     title: 'PNG to Favicon',
-    href: '/image/png2ico',
+    to: '/image/png2ico',
     description: 'PNG to Favicon',
     icon: 'mdi:alpha-f-box-outline',
     state: 'wip',
@@ -106,7 +106,7 @@ const imagePages: Menu[] = [
 const converMenu: Menu[] = [
   {
     title: 'CIDR to IP',
-    href: '/convert/cidr2ip',
+    to: '/convert/cidr2ip',
     description: 'CIDR to IP Range',
     icon: 'mdi:ip-network-outline',
   },

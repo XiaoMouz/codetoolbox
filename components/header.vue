@@ -82,7 +82,7 @@ const $route = useRoute()
                 title="You might interesting"
                 icon="mdi:star-four-points-box-outline"
               >
-                About this site
+                This site
               </NavListItem>
               <NavListItem
                 href="https://github.com/XiaoMouz/codetoolbox"
@@ -117,7 +117,9 @@ const $route = useRoute()
           <DropdownMenuItem
             ><Icon name="mdi:check" /> English / 英语</DropdownMenuItem
           >
-          <DropdownMenuItem disabled>中文 / Chinese</DropdownMenuItem>
+          <DropdownMenuItem disabled
+            ><Icon name="mdi:progress-wrench" />中文 / Chinese</DropdownMenuItem
+          >
         </DropdownMenuContent>
       </DropdownMenu>
       <div

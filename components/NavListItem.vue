@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { cn } from '@/lib/utils'
-import type { MenusState } from '../menu'
+import type { MenusState } from './menu'
 const $route = useRoute()
 const props = defineProps<{
   title?: string
