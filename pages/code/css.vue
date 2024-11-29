@@ -7,6 +7,17 @@ import * as postcss from 'prettier/parser-postcss'
 import * as prettierPluginEstree from 'prettier/plugins/estree'
 
 const { toast } = useToast()
+
+useHead({
+  title: 'CSS Formatter, Compressor',
+  meta: [
+    {
+      name: 'description',
+      content: 'CSS Formatter, Compressor',
+    },
+  ],
+})
+
 const code = ref(`@import url('something.css');
 
 body {

@@ -5,6 +5,16 @@ import { useToast } from '~/components/ui/toast'
 
 const { toast } = useToast()
 
+useHead({
+  title: 'URI Encoder',
+  meta: [
+    {
+      name: 'description',
+      content: 'URI Encode, URI Decode',
+    },
+  ],
+})
+
 const mode = ref<'encode' | 'decode'>('encode')
 
 const content = ref('')

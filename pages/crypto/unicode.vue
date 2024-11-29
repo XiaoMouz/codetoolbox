@@ -5,6 +5,16 @@ import { useToast } from '~/components/ui/toast'
 
 const { toast } = useToast()
 
+useHead({
+  title: 'Unicode',
+  meta: [
+    {
+      name: 'description',
+      content: 'Convert to HTML entity or unicode',
+    },
+  ],
+})
+
 const mode = ref<'encode' | 'decode'>('encode')
 
 const content = ref('')

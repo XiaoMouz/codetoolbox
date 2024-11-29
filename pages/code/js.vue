@@ -9,6 +9,18 @@ import javascriptObfuscator from 'javascript-obfuscator'
 
 import { minify } from 'terser'
 
+
+
+useHead({
+  title: 'JavaScript Formatter, Compressor',
+  meta: [
+    {
+      name: 'description',
+      content: 'JavaScript Formatter, Compressor',
+    },
+  ],
+})
+
 const { toast } = useToast()
 const code = ref(`function StringStream(string) {
   this.pos = 0

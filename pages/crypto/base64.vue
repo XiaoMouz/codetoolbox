@@ -5,6 +5,16 @@ import { useToast } from '~/components/ui/toast'
 
 const { toast } = useToast()
 
+useHead({
+  title: 'Base64',
+  meta: [
+    {
+      name: 'description',
+      content: 'Base 64 Encode, decode, custom code table',
+    },
+  ],
+})
+
 const mode = ref<'encode' | 'decode'>('encode')
 
 const content = ref('')

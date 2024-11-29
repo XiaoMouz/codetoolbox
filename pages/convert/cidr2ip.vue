@@ -14,6 +14,16 @@ import cidrRegex from 'cidr-regex'
 import { Netmask } from 'netmask'
 const { toast } = useToast()
 
+useHead({
+  title: 'CIDR to IP',
+  meta: [
+    {
+      name: 'description',
+      content: 'CIDR to IP Range',
+    },
+  ],
+})
+
 const cidr = ref(`10.0.0.0/8
 172.16.0.0/12
 192.168.0.0/16`)

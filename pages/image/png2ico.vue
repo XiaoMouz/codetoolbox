@@ -3,6 +3,16 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 
 //import png2icons from 'png2icons'
 
+useHead({
+  title: 'PNG to ICO',
+  meta: [
+    {
+      name: 'description',
+      content: 'PNG to ICO or Apple ICNS converter',
+    },
+  ],
+})
+
 const format = ref<'ico' | 'icns'>('ico')
 const innerFormat = ref<'png' | 'bmp'>('png')
 const noc = ref(0)

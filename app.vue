@@ -5,6 +5,7 @@ import { ConfigProvider } from 'radix-vue'
 const useIdFunction = () => useId()
 
 useHead({
+  titleTemplate: '%s - Tool Box',
   script: [
     `(function () {
       const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches

@@ -6,6 +6,16 @@ import Label from '~/components/ui/label/Label.vue'
 
 const dark = useDark()
 
+useHead({
+  title: 'Generate QR Code',
+  meta: [
+    {
+      name: 'description',
+      content: 'Generate QR Code',
+    },
+  ],
+})
+
 const loaded = ref(false)
 
 const content = ref('')

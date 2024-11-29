@@ -7,6 +7,17 @@ import * as htmlParser from 'prettier/parser-html'
 import * as prettierPluginEstree from 'prettier/plugins/estree'
 
 const { toast } = useToast()
+
+useHead({
+  title: 'HTML Formatter, Compressor',
+  meta: [
+    {
+      name: 'description',
+      content: 'HTML Formatter, Compressor',
+    },
+  ],
+})
+
 const code = ref(`<html style="color: green">
   <!-- this is a comment -->
   <head>

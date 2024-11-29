@@ -1,6 +1,15 @@
 <script setup lang="ts">
 import { menus } from '@/components/menu'
 import NavListItem from '~/components/NavListItem.vue'
+useHead({
+  title: 'INDEX',
+  meta: [
+    {
+      name: 'description',
+      content: 'Tool Box',
+    },
+  ],
+})
 </script>
 <template>
   <div class="flex flex-col flex-wrap justify-center items-center">

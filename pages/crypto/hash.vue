@@ -6,6 +6,16 @@ import type { HashMode } from '~/utils/hash'
 
 const { toast } = useToast()
 
+useHead({
+  title: 'Hash',
+  meta: [
+    {
+      name: 'description',
+      content: 'Hash',
+    },
+  ],
+})
+
 const mode = ref<'calculate'>('calculate')
 
 const format = ref<HashMode>('MD5')

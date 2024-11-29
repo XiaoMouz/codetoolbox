@@ -6,6 +6,16 @@ import { cryptoFormatMap } from '~/utils/crypto'
 
 const { toast } = useToast()
 
+useHead({
+  title: 'Encrypt, Decrypt',
+  meta: [
+    {
+      name: 'description',
+      content: 'Encrypt, Decrypt',
+    },
+  ],
+})
+
 const mode = ref<'encrypt' | 'decrypt'>('encrypt')
 
 const format = ref<CryptoFormat>('AES')
