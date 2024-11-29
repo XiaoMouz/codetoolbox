@@ -105,14 +105,19 @@ const $route = useRoute()
     </NavigationMenu>
     <div class="flex flex-row gap-6">
       <DropdownMenu>
-        <DropdownMenuTrigger>Open</DropdownMenuTrigger>
+        <DropdownMenuTrigger>
+          <div
+            class="flex w-10 h-10 items-center justify-center rounded-full transition duration-300 cursor-pointer hover:bg-slate-400 dark:hover:bg-gray-400 fill-gray-900 dark:fill-slate-100 ease-in-out"
+          >
+            <Icon name="mdi:translate" /></div
+        ></DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
+          <DropdownMenuLabel>语言 / Language</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>Profile</DropdownMenuItem>
-          <DropdownMenuItem>Billing</DropdownMenuItem>
-          <DropdownMenuItem>Team</DropdownMenuItem>
-          <DropdownMenuItem>Subscription</DropdownMenuItem>
+          <DropdownMenuItem
+            ><Icon name="mdi:check" /> English / 英语</DropdownMenuItem
+          >
+          <DropdownMenuItem disabled>中文 / Chinese</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
       <div
