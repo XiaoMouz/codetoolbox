@@ -104,6 +104,13 @@ const $route = useRoute()
       </NavigationMenuList>
     </NavigationMenu>
     <div class="flex flex-row gap-6">
+      <div
+        v-if="$route.path.startsWith('/share')"
+        class="flex w-10 h-10 items-center justify-center rounded-full transition duration-300 cursor-pointer hover:bg-slate-400 dark:hover:bg-gray-400 fill-gray-900 dark:fill-slate-100 ease-in-out"
+        @click="$router.push('/share/backend/login')"
+      >
+        <Icon name="mdi:key-chain-variant" />
+      </div>
       <DropdownMenu>
         <DropdownMenuTrigger>
           <div

@@ -112,6 +112,23 @@ const converMenu: Menu[] = [
   },
 ]
 
+const shareMenu: Menu[] = [
+  {
+    title: 'Online Copyboard',
+    to: '/share/copyboard',
+    description: 'Share your text',
+    icon: 'mdi:file-cloud',
+    state: 'wip',
+  },
+  {
+    title: 'File Share',
+    to: '/share/file',
+    description: 'Fast share service',
+    icon: 'mdi:cloud-print-outline',
+    state: 'wip',
+  },
+]
+
 export const menus: {
   title: string
   menu: Menu[]
@@ -132,5 +149,9 @@ export const menus: {
   {
     title: 'Network',
     menu: converMenu,
+  },
+  {
+    title: 'Share',
+    menu: shareMenu,
   },
 ]
