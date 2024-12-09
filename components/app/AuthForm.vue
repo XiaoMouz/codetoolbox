@@ -5,15 +5,49 @@ import Label from '../ui/label/Label.vue'
 import Input from '../ui/input/Input.vue'
 import Button from '../ui/button/Button.vue'
 import LoadingCycle from '../LoadingCycle.vue'
+import { useUserStore } from '~/stores/auth'
+import { onMounted } from 'vue'
+import { useToast } from '~/components/ui/toast'
+const { toast } = useToast()
+
+const userStore = useUserStore()
+
+onMounted(() => {})
+
+const certificate = reactive({
+  email: '',
+  password: '',
+})
 
 const isLoading = ref(false)
 async function onSubmit(event: Event) {
   event.preventDefault()
   isLoading.value = true
-
-  setTimeout(() => {
-    isLoading.value = false
-  }, 3000)
+  await userStore
+    .login(certificate.email, certificate.password)
+    .then((result) => {
+      if (result.success) {
+        toast({
+          title: 'Login',
+          description: 'Login successfully',
+        })
+        isLoading.value = false
+        const router = useRouter()
+        router.back()
+      } else {
+        toast({
+          title: 'Login',
+          description: result.message,
+        })
+        isLoading.value = false
+      }
+    })
+    .catch((error) => {
+      toast({
+        title: 'Login',
+        description: error.message,
+      })
+    })
 }
 </script>
 
@@ -35,6 +69,7 @@ async function onSubmit(event: Event) {
               <div class="grid gap-1">
                 <Label for="email"> Email </Label>
                 <Input
+                  v-model:model-value="certificate.email"
                   id="email"
                   placeholder="name@example.com"
                   type="email"
@@ -47,6 +82,7 @@ async function onSubmit(event: Event) {
               <div class="grid gap-1">
                 <Label for="password"> Password </Label>
                 <Input
+                  v-model:model-value="certificate.password"
                   id="password"
                   placeholder="Password"
                   type="password"

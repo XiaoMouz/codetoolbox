@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useDark } from '@vueuse/core'
 import { ConfigProvider } from 'radix-vue'
+import { Analytics } from '@vercel/analytics/nuxt'
 
 const useIdFunction = () => useId()
 
@@ -21,6 +22,7 @@ preloadComponents(['header', 'nav-list-item'])
 
 <template>
   <ConfigProvider :use-id="useIdFunction">
+    <Analytics />
     <Toaster />
     <NuxtLoadingIndicator />
     <NuxtLayout>

@@ -2,5 +2,11 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
-  modules: ['@nuxt/icon', '@vueuse/nuxt', '@nuxtjs/tailwindcss', 'shadcn-nuxt'],
+  modules: [
+    '@nuxt/icon',
+    '@vueuse/nuxt',
+    '@nuxtjs/tailwindcss',
+    'shadcn-nuxt',
+    '@pinia/nuxt',
+  ],
 })
