@@ -24,6 +24,10 @@ import { menus } from './menu'
 
 const isDark = useDark()
 const $route = useRoute()
+
+const userStore = useUserStore()
+const { $state, isTokenExpired } = userStore
+const loginState = computed(() => $state.session != null && !isTokenExpired())
 </script>
 
 <template>
@@ -109,7 +113,23 @@ const $route = useRoute()
         class="flex w-10 h-10 items-center justify-center rounded-full transition duration-300 cursor-pointer hover:bg-slate-400 dark:hover:bg-gray-400 fill-gray-900 dark:fill-slate-100 ease-in-out"
         @click="$router.push('/share/backend/login')"
       >
-        <Icon name="mdi:key-chain-variant" />
+        <ClientOnly>
+          <Icon v-if="!loginState" name="mdi:key-chain-variant" />
+          <Avatar class="size-6" v-else>
+            <AvatarImage
+              v-if="$state.session?.user"
+              :src="
+                $state.session.user.avatar
+                  ? $state.session.user.avatar
+                  : getGAvatar($state.session?.user.email)
+              "
+              :alt="$state.session?.user.username"
+            />
+            <AvatarFallback v-if="$state.session?.user">{{
+              $state.session.user.username.charAt(0)
+            }}</AvatarFallback>
+          </Avatar>
+        </ClientOnly>
       </div>
       <DropdownMenu>
         <DropdownMenuTrigger>

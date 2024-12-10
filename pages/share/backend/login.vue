@@ -12,6 +12,10 @@ definePageMeta({
 useHead({
   title: 'Login (service.mou.best)',
 })
+
+const userStore = useUserStore()
+const { $state, isTokenExpired } = userStore
+const loginState = computed(() => $state.session != null && !isTokenExpired())
 </script>
 <template>
   <main class="h-screen flex justify-center items-center">
@@ -25,7 +29,8 @@ useHead({
         "
         ><Icon name="mdi:keyboard-backspace" /> Back</Button
       >
-      <AppAuthForm />
+      <AppAuthForm v-if="!loginState" />
+      <AppUserCard v-else />
     </div>
   </main>
 </template>

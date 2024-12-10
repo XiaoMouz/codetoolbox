@@ -8,5 +8,6 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     'shadcn-nuxt',
     '@pinia/nuxt',
+    'pinia-plugin-persistedstate',
   ],
 })

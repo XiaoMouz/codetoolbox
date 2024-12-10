@@ -1,4 +1,3 @@
-// stores/user.ts
 import { defineStore } from 'pinia'
 import type { TokenSession } from '~/types/user.type'
 
@@ -44,32 +43,29 @@ export const useUserStore = defineStore('user', {
     },
 
     async refreshToken() {
-      const xhr = new XMLHttpRequest()
-      xhr.open('POST', `${baseURL}/api/refresh`, true)
-
-      xhr.setRequestHeader('Content-Type', 'application/json')
-
-      xhr.onload = () => {
-        if (xhr.status === 200) {
-          const response = JSON.parse(xhr.responseText)
-          this.session = response.session
-        } else {
-          console.error('Token refresh failed:', xhr.statusText)
-          this.logout()
-        }
-      }
-
-      xhr.onerror = () => {
-        console.error('Network error')
-        this.logout()
-      }
-
-      xhr.send(
-        JSON.stringify({
-          token: this.session?.token,
-          refreshToken: this.session?.refreshToken,
+      try {
+        const token = this.session?.token
+        const refreshToken = this.session?.refreshToken
+        const response = await fetch(`${baseURL}/auth/refresh`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ token, refreshToken }),
         })
-      )
+
+        if (!response.ok) {
+          const errorData = await response.json()
+          throw new Error(errorData.message || 'Refresh failed')
+        }
+
+        const data = await response.json()
+        this.session = data.session
+        return { success: true }
+      } catch (error: any) {
+        console.error('Refresh failed:', error)
+        return { success: false, message: error.message }
+      }
     },
     logout() {
       this.session = null
@@ -79,5 +75,9 @@ export const useUserStore = defineStore('user', {
         ? Date.now() >= this.session.expireAt
         : false
     },
+  },
+  persist: {
+    key: 'session-store',
+    storage: piniaPluginPersistedstate.localStorage(),
   },
 })
