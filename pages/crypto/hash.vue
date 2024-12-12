@@ -41,39 +41,7 @@ const result = computed(() => {
   }
 })
 
-function copy() {
-  navigator.clipboard.writeText(result.value || '')
-  toast({
-    title: 'Copied',
-    description: 'Result has been copied to clipboard',
-  })
-}
-
-function paste() {
-  navigator.clipboard.readText().then((text) => {
-    content.value = text
-    toast({
-      title: 'Pasted',
-      description: 'Result has been pasted',
-    })
-  })
-}
-
-onMounted(() => {
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'c' && (e.ctrlKey || e.metaKey)) {
-      copy()
-    }
-  })
-})
-
-onUnmounted(() => {
-  window.removeEventListener('keydown', (e) => {
-    if (e.key === 'c' && (e.ctrlKey || e.metaKey)) {
-      copy()
-    }
-  })
-})
+const { copy, paste } = useCVHotkey(content, result)
 </script>
 <template>
   <div class="flex h-full w-full flex-col items-center mb-8">

@@ -40,23 +40,7 @@ const result = computed(() => {
   }
 })
 
-function copy() {
-  navigator.clipboard.writeText(result.value || '')
-  toast({
-    title: 'Copied',
-    description: 'Result has been copied to clipboard',
-  })
-}
-
-function paste() {
-  navigator.clipboard.readText().then((text) => {
-    content.value = text
-    toast({
-      title: 'Pasted',
-      description: 'Result has been pasted',
-    })
-  })
-}
+const { copy, paste } = useCVHotkey(content, result)
 
 function share() {
   const url = new URL(window.location.href)
@@ -70,22 +54,6 @@ function share() {
     description: 'URL has been copied to clipboard',
   })
 }
-
-onMounted(() => {
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'c' && (e.ctrlKey || e.metaKey)) {
-      copy()
-    }
-  })
-})
-
-onUnmounted(() => {
-  window.removeEventListener('keydown', (e) => {
-    if (e.key === 'c' && (e.ctrlKey || e.metaKey)) {
-      copy()
-    }
-  })
-})
 
 const route = useRoute()
 const modeFromUrl = route.query.mode as 'encrypt' | 'decrypt'
