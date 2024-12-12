@@ -110,6 +110,14 @@ onMounted(() => {
   })
 })
 
+onUnmounted(() => {
+  window.removeEventListener('keydown', (e) => {
+    if (e.key === 'c' && (e.ctrlKey || e.metaKey)) {
+      copy()
+    }
+  })
+})
+
 const route = useRoute()
 const modeFromUrl = route.query.mode as 'encode' | 'decode'
 const formatFromUrl = route.query.format as

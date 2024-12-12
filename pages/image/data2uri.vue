@@ -66,6 +66,14 @@ onMounted(() => {
     }
   })
 })
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', (e) => {
+    if (e.key === 'c' && (e.ctrlKey || e.metaKey)) {
+      copy()
+    }
+  })
+})
 </script>
 
 <template>

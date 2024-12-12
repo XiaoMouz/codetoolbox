@@ -80,6 +80,14 @@ onMounted(() => {
   })
 })
 
+onUnmounted(() => {
+  window.removeEventListener('keydown', (e) => {
+    if (e.key === 'v' && (e.ctrlKey || e.metaKey)) {
+      paste()
+    }
+  })
+})
+
 const emit = defineEmits<{
   decoded: [value: string]
   callback: [value: any]
