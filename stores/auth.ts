@@ -1,11 +1,10 @@
 import { defineStore } from 'pinia'
 import type { TokenSession } from '~/types/user.type'
+import { baseURL } from '~/config/backend'
 
 interface UserState {
   session: TokenSession | null
 }
-
-const baseURL = process.env.BASE_URL || 'https://api.mou.best'
 
 export const useUserStore = defineStore('user', {
   state: (): UserState => ({

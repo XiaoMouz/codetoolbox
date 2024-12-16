@@ -4,8 +4,19 @@ import { useToast } from '~/components/ui/toast'
 
 const { toast } = useToast()
 
+const {
+  remote,
+  loading,
+  local,
+  current,
+  getRemoteCopyboard,
+  getRemoteCopyboardList,
+  newCopyboard,
+  putCopyboard,
+} = useCopyboardStore()
 
-
+getRemoteCopyboardList()
+console.log(remote)
 useHead({
   title: 'Online Copyboard',
   meta: [
@@ -25,6 +36,11 @@ useHead({
         icon="mdi:file-cloud"
         description="A Online copyboard to store your text"
       />
+      <div>
+        <ClientOnly>
+          <CopyboardList />
+        </ClientOnly>
+      </div>
     </div>
   </div>
 </template>
