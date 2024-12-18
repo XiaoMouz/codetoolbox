@@ -17,7 +17,7 @@ interface State {
     | null
   loading: boolean
   local: CopyboardState[]
-  current: CopyboardState | null
+  current: Content | null
 }
 
 export const useCopyboardStore = defineStore('copyboard', {
@@ -146,6 +146,7 @@ export const useCopyboardStore = defineStore('copyboard', {
             })
           }
           this.current = data.info
+          this.loading = false
         })
       this.loading = false
     },
