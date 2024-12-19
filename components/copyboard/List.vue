@@ -2,9 +2,13 @@
 import type { Content } from '~/types/copyboard.type'
 
 const store = useCopyboardStore()
-store.$subscribe((state) => {
-  console.log(state)
+const userStore = useUserStore()
+const { session } = storeToRefs(userStore)
+
+const userAuthed = computed(() => {
+  return session && userStore.isTokenExpired()
 })
+
 const {
   getRemoteCopyboard,
   getRemoteCopyboardList,
@@ -18,15 +22,11 @@ function haveLocal(id: string): boolean {
   return local.value.find((i) => i.body.id === id) ? true : false
 }
 
-function isExpired(item: Content) {
-  return item.expireAt < Date.now() ? true : false
-}
-
 getRemoteCopyboardList()
 </script>
 <template>
   <div class="flex gap-6 flex-col">
-    <div class="flex gap-2 flex-col">
+    <div v-if="userAuthed" class="flex gap-2 flex-col">
       <div class="flex flex-row items-center gap-2">
         <Icon name="mdi:cloud" class="size-5" />
         <h1 class="text-xl">Remote Copyboard List</h1>
@@ -70,6 +70,15 @@ getRemoteCopyboardList()
         </button>
       </div>
     </div>
+    <div v-else>
+      <Badge
+        ><Icon class="mr-2 size-5" name="mdi:account-alert-outline" /><span
+          class="cursor-default"
+          >Anonymouse</span
+        >
+        Mode</Badge
+      >
+    </div>
     <div class="flex gap-2 flex-col">
       <div class="flex flex-row items-center gap-2">
         <Icon name="mdi:database-outline" class="size-5" />
@@ -84,34 +93,12 @@ getRemoteCopyboardList()
         >
           <LoadingCycle />
         </div>
-        <button
-          class="flex items-center p-1 px-2 border-2 rounded-lg justify-center gap-1 hover:bg-muted transition-all duration-100"
-          :class="
-            cn({
-              'bg-muted cursor-not-allowed': current
-                ? current.id === i.body.id
-                : false,
-            })
-          "
+        <CopyboardItem
           v-for="i in local"
+          :item="i.body"
+          :update-at="i.updateAt"
           :key="i.body.id"
-          @click="
-            () => {
-              getRemoteCopyboard(i.body.id)
-              $router.push(`/share/copyboard/${i.body.id}`)
-            }
-          "
-        >
-          <Icon
-            v-if="!loading"
-            :name="
-              isExpired(i.body)
-                ? 'mdi:clipboard-text-play-outline'
-                : 'mdi:cloud-arrow-down-outline'
-            "
-          />
-          {{ i.body.name }}
-        </button>
+        />
       </div>
     </div>
   </div>
