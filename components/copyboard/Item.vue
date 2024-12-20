@@ -22,7 +22,7 @@ function isExpired(item: Content) {
 </script>
 <template>
   <div
-    class="flex items-center relative p-1 px-2 border-2 rounded-lg justify-center gap-1 hover:bg-muted transition-all duration-100"
+    class="flex items-center cursor-pointer relative p-1 px-2 border-2 rounded-lg justify-center gap-1 hover:bg-muted transition-all duration-100"
     @click="
       () => {
         getRemoteCopyboard(item.id)

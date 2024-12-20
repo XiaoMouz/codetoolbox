@@ -6,7 +6,7 @@ const userStore = useUserStore()
 const { session } = storeToRefs(userStore)
 
 const userAuthed = computed(() => {
-  return session && userStore.isTokenExpired()
+  return session.value && !userStore.isTokenExpired()
 })
 
 const {
@@ -67,10 +67,9 @@ getRemoteCopyboardList()
       <Badge
         ><Icon class="mr-2 size-5" name="mdi:account-alert-outline" /><span
           class="cursor-default"
-          >Anonymouse</span
+          >Anonymouse&nbsp;Mode</span
         >
-        Mode</Badge
-      >
+      </Badge>
     </div>
     <div class="flex gap-2 flex-col">
       <div class="flex flex-row items-center gap-2">
