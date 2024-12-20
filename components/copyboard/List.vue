@@ -26,6 +26,16 @@ getRemoteCopyboardList()
 </script>
 <template>
   <div class="flex gap-6 flex-col">
+    <div class="flex gap-2">
+      <Button>
+        <Icon name="mdi:plus" class="mr-1 size-4" />
+        New
+      </Button>
+      <Button variant="outline">
+        <Icon name="mdi:cloud-refresh-outline" class="mr-1 size-4" />
+        Delete Expired
+      </Button>
+    </div>
     <div v-if="userAuthed" class="flex gap-2 flex-col">
       <div class="flex flex-row items-center gap-2">
         <Icon name="mdi:cloud" class="size-5" />
