@@ -17,14 +17,12 @@ interface State {
     | null
   loading: boolean
   local: CopyboardState[]
-  current: Content | null
 }
 
 export const useCopyboardStore = defineStore('copyboard', {
   state: (): State => ({
     remote: null,
     local: [],
-    current: null,
     loading: false,
   }),
   actions: {
@@ -145,7 +143,6 @@ export const useCopyboardStore = defineStore('copyboard', {
               updateAt: Date.now(),
             })
           }
-          this.current = data.info
           this.loading = false
         })
       this.loading = false

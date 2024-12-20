@@ -15,7 +15,7 @@ const {
   newCopyboard,
   putCopyboard,
 } = store
-const { remote, loading, local, current } = storeToRefs(store)
+const { remote, loading, local } = storeToRefs(store)
 
 // find remote and local copyboard have same copyboard ?
 function haveLocal(id: string): boolean {
@@ -42,13 +42,6 @@ getRemoteCopyboardList()
         </div>
         <button
           class="flex items-center p-1 px-2 border-2 rounded-lg justify-center gap-1 hover:bg-muted transition-all duration-100"
-          :class="
-            cn({
-              'bg-muted cursor-not-allowed': current
-                ? current.id === i.id
-                : false,
-            })
-          "
           v-for="i in remote"
           :key="i.id"
           @click="

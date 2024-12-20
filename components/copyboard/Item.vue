@@ -14,7 +14,7 @@ const {
   newCopyboard,
   putCopyboard,
 } = store
-const { remote, loading, local, current } = storeToRefs(store)
+const { remote, loading, local } = storeToRefs(store)
 
 function isExpired(item: Content) {
   return item.expireAt < Date.now() ? true : false
@@ -23,11 +23,6 @@ function isExpired(item: Content) {
 <template>
   <div
     class="flex items-center relative p-1 px-2 border-2 rounded-lg justify-center gap-1 hover:bg-muted transition-all duration-100"
-    :class="
-      cn({
-        'bg-muted cursor-not-allowed': current ? current.id === item.id : false,
-      })
-    "
     @click="
       () => {
         getRemoteCopyboard(item.id)
