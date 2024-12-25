@@ -65,6 +65,13 @@ onMounted(async () => {
   })
   loading.value = true
 })
+
+//watch local
+watch(local, (val) => {
+  const paramId = route.params.id.toString()
+  let result = val.find((i) => (i.body ? i.body.id === paramId : false))
+  item.value = result ? result?.body : item.value
+})
 </script>
 
 <template>
