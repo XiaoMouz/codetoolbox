@@ -22,7 +22,7 @@ function haveLocal(id: string): boolean {
   return local.value.find((i) => i.body.id === id) ? true : false
 }
 
-let item: Content = {
+let item = ref<Content>({
   id: '',
   name: '',
   expireAt: Date.now() + 1000 * 60 * 60 * 24 * 7,
@@ -34,7 +34,7 @@ let item: Content = {
   password: undefined,
   private: false,
   history: [],
-}
+})
 // get id from route
 const route = useRoute()
 const router = useRouter()
@@ -49,19 +49,19 @@ onMounted(async () => {
   // if not exist in local, get from remote
   if (!result) {
     const bol = await getRemoteCopyboard(paramId)
-    item = bol
+    item.value = bol
       ? (local.value.find((i) => (i.body ? i.body.id === paramId : false))
-          ?.body ?? item)
-      : item
+          ?.body ?? item.value)
+      : item.value
   }
 
-  item = result ? result?.body : item
+  item.value = result ? result?.body : item.value
 
-  if (!item) {
+  if (!item.value) {
     router.push('/share/copyboard/new')
   }
   useHead({
-    title: item.name,
+    title: item.value.name,
   })
   loading.value = true
 })
