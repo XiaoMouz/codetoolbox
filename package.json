@@ -10,6 +10,12 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@codemirror/lang-css": "^6.3.0",
+    "@codemirror/lang-html": "^6.4.9",
+    "@codemirror/lang-javascript": "^6.2.2",
+    "@codemirror/state": "^6.4.1",
+    "@codemirror/theme-one-dark": "^6.1.2",
+    "@codemirror/view": "^6.34.2",
     "@nuxt/icon": "^1.7.5",
     "@nuxtjs/color-mode": "^3.5.2",
     "@nuxtjs/tailwindcss": "^6.12.2",
@@ -22,6 +28,7 @@
     "@vueuse/nuxt": "^11.2.0",
     "cidr-regex": "^4.1.1",
     "class-variance-authority": "^0.7.0",
+    "clean-css": "^5.3.3",
     "clsx": "^2.1.1",
     "crypto-js": "^4.2.0",
     "javascript-obfuscator": "^4.1.1",
@@ -42,17 +49,11 @@
     "vue": "latest",
     "vue-codemirror": "^6.1.1",
     "vue-router": "latest",
-    "zod": "^3.23.8",
-    "clean-css": "^5.3.3",
-    "@codemirror/lang-css": "^6.3.0",
-    "@codemirror/lang-html": "^6.4.9",
-    "@codemirror/lang-javascript": "^6.2.2",
-    "@codemirror/state": "^6.4.1",
-    "@codemirror/theme-one-dark": "^6.1.2",
-    "@codemirror/view": "^6.34.2"
+    "zod": "^3.23.8"
   },
   "packageManager": "pnpm@9.12.3+sha512.cce0f9de9c5a7c95bef944169cc5dfe8741abfb145078c0d508b868056848a87c81e626246cb60967cbd7fd29a6c062ef73ff840d96b3c86c40ac92cf4a813ee",
   "devDependencies": {
+    "@iconify-json/file-icons": "^1.2.1",
     "@iconify-json/mdi": "^1.2.1",
     "@types/crypto-js": "^4.2.2",
     "@types/css-tree": "^2.3.9",

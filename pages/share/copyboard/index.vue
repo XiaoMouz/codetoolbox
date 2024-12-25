@@ -8,7 +8,6 @@ const {
   remote,
   loading,
   local,
-  current,
   getRemoteCopyboard,
   getRemoteCopyboardList,
   newCopyboard,
@@ -16,7 +15,7 @@ const {
 } = useCopyboardStore()
 
 getRemoteCopyboardList()
-console.log(remote)
+
 useHead({
   title: 'Online Copyboard',
   meta: [

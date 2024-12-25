@@ -1,6 +1,17 @@
 <script setup lang="ts">
 import type { Content } from '~/types/copyboard.type'
 
+const store = useCopyboardStore()
+const userStore = useUserStore()
+
+const {
+  getRemoteCopyboard,
+  getRemoteCopyboardList,
+  newCopyboard,
+  putCopyboard,
+} = store
+const { remote, local } = storeToRefs(store)
+
 const item = ref<Content>({
   id: '',
   name: '',
@@ -18,6 +29,15 @@ const item = ref<Content>({
 
 <template>
   <div>
-    <CopyboardForm v-model="item" />
+    <CopyboardForm
+      @save="
+        newCopyboard(item.content, {
+          name: item.name,
+          private: item.private,
+          password: item.password,
+        })
+      "
+      v-model="item"
+    />
   </div>
 </template>

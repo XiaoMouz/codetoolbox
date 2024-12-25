@@ -48,7 +48,7 @@ export const useCopyboardStore = defineStore('copyboard', {
       content: string,
       options?: {
         name?: string
-        priavte?: boolean
+        private?: boolean
         password?: string
       }
     ): Promise<Content | null> {
@@ -63,7 +63,7 @@ export const useCopyboardStore = defineStore('copyboard', {
         body: JSON.stringify({
           content,
           name: options?.name,
-          private: options?.priavte,
+          private: options?.private,
           password: options?.password,
         }),
       })
@@ -96,7 +96,11 @@ export const useCopyboardStore = defineStore('copyboard', {
           Authorization: `${user.session?.token}:${user.session?.user.email}`,
         },
         body: JSON.stringify({
-          content,
+          name: content.name,
+          status: content.status,
+          content: content.content,
+          private: content.private,
+          password: content.password,
         }),
       })
         .then(
@@ -144,8 +148,16 @@ export const useCopyboardStore = defineStore('copyboard', {
             })
           }
           this.loading = false
+          return true
         })
       this.loading = false
+      return false
+    },
+    async setLocalCopyboardList(id: string) {
+      const index = this.local.findIndex((item) => item.body.id === id)
+      if (index !== -1) {
+        this.local[index].updateAt = Date.now()
+      }
     },
   },
   persist: {

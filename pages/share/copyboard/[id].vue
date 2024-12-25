@@ -1,1 +1,66 @@
-<template>Hi</template>
+<script setup lang="ts">
+import type { Content } from '~/types/copyboard.type'
+
+const store = useCopyboardStore()
+const userStore = useUserStore()
+const { session } = storeToRefs(userStore)
+
+const {
+  getRemoteCopyboard,
+  getRemoteCopyboardList,
+  newCopyboard,
+  putCopyboard,
+} = store
+const { remote, local } = storeToRefs(store)
+
+// find remote and local copyboard have same copyboard ?
+function haveLocal(id: string): boolean {
+  return local.value.find((i) => i.body.id === id) ? true : false
+}
+
+let item: Content = {
+  id: '',
+  name: '',
+  expireAt: Date.now() + 1000 * 60 * 60 * 24 * 7,
+  createdAt: Date.now(),
+  modifiedAt: Date.now(),
+  uploader: '',
+  content: '',
+  status: 'active',
+  password: undefined,
+  private: false,
+  history: [],
+}
+// get id from route
+const route = useRoute()
+const router = useRouter()
+const loading = ref(false)
+
+onMounted(() => {
+  const paramId = route.params.id.toString()
+  console.log(paramId)
+
+  let result = local.value.find((i) => (i.body ? i.body.id === paramId : false))
+  console.log(local.value)
+  // if not exist in local, get from remote
+  if (!result) {
+    getRemoteCopyboard(paramId)
+  }
+
+  item = result ? result?.body : item
+
+  if (!item) {
+    router.push('/share/copyboard/new')
+  }
+  loading.value = true
+})
+</script>
+
+<template>
+  <ClientOnly>
+    <div v-if="loading">
+      <CopyboardForm @save="putCopyboard(item)" v-model="item" />
+    </div>
+  </ClientOnly>
+  ??
+</template>

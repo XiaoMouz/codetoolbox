@@ -19,7 +19,9 @@ const { remote, loading, local } = storeToRefs(store)
 
 // find remote and local copyboard have same copyboard ?
 function haveLocal(id: string): boolean {
-  return local.value.find((i) => i.body.id === id) ? true : false
+  return local.value.find((i) => (i.body ? i.body.id === id : false))
+    ? true
+    : false
 }
 
 getRemoteCopyboardList()
@@ -27,7 +29,13 @@ getRemoteCopyboardList()
 <template>
   <div class="flex gap-6 flex-col">
     <div class="flex gap-2">
-      <Button>
+      <Button
+        @click="
+          () => {
+            $router.push('/share/copyboard/new')
+          }
+        "
+      >
         <Icon name="mdi:plus" class="mr-1 size-4" />
         New
       </Button>
@@ -51,6 +59,7 @@ getRemoteCopyboardList()
           <LoadingCycle />
         </div>
         <button
+          v-if="remote?.length"
           class="flex items-center p-1 px-2 border-2 rounded-lg justify-center gap-1 hover:bg-muted transition-all duration-100"
           v-for="i in remote"
           :key="i.id"
@@ -71,6 +80,14 @@ getRemoteCopyboardList()
           />
           {{ i.name }}
         </button>
+        <div v-else>
+          <Badge class="mt-1" variant="secondary"
+            ><Icon class="mr-2 size-5" name="mdi:cloud-off-outline" /><span
+              class="cursor-default"
+              >Remote&nbsp;copyboard&nbsp;list&nbsp;is&nbsp;empty</span
+            >
+          </Badge>
+        </div>
       </div>
     </div>
     <div v-else>
@@ -96,11 +113,20 @@ getRemoteCopyboardList()
           <LoadingCycle />
         </div>
         <CopyboardItem
+          v-if="local.length"
           v-for="i in local"
           :item="i.body"
           :update-at="i.updateAt"
           :key="i.body.id"
         />
+        <div v-else>
+          <Badge variant="secondary" class="mt-1"
+            ><Icon class="mr-2 size-5" name="mdi:database-off-outline" /><span
+              class="cursor-default"
+              >No&nbsp;Local&nbsp;Copyboard</span
+            >
+          </Badge>
+        </div>
       </div>
     </div>
   </div>
