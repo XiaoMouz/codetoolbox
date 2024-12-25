@@ -40,7 +40,7 @@ const route = useRoute()
 const router = useRouter()
 const loading = ref(false)
 
-onMounted(() => {
+onMounted(async () => {
   const paramId = route.params.id.toString()
   console.log(paramId)
 
@@ -48,7 +48,11 @@ onMounted(() => {
   console.log(local.value)
   // if not exist in local, get from remote
   if (!result) {
-    getRemoteCopyboard(paramId)
+    const bol = await getRemoteCopyboard(paramId)
+    item = bol
+      ? (local.value.find((i) => (i.body ? i.body.id === paramId : false))
+          ?.body ?? item)
+      : item
   }
 
   item = result ? result?.body : item
