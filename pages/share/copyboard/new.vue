@@ -4,6 +4,10 @@ import type { Content } from '~/types/copyboard.type'
 const store = useCopyboardStore()
 const userStore = useUserStore()
 
+useHead({
+  title: 'New Copyboard',
+})
+
 const {
   getRemoteCopyboard,
   getRemoteCopyboardList,

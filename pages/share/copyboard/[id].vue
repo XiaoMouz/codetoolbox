@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import type { Content } from '~/types/copyboard.type'
 
+useHead({
+  title: 'Online Copyboard',
+})
+
 const store = useCopyboardStore()
 const userStore = useUserStore()
 const { session } = storeToRefs(userStore)
@@ -52,6 +56,9 @@ onMounted(() => {
   if (!item) {
     router.push('/share/copyboard/new')
   }
+  useHead({
+    title: item.name,
+  })
   loading.value = true
 })
 </script>
@@ -62,5 +69,4 @@ onMounted(() => {
       <CopyboardForm @save="putCopyboard(item)" v-model="item" />
     </div>
   </ClientOnly>
-  ??
 </template>
