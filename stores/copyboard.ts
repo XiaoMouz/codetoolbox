@@ -1,6 +1,6 @@
 import { get } from '@vueuse/core'
 import { defineStore } from 'pinia'
-import type { Content } from '~/types/copyboard.type'
+import type { Content } from '~/types/dto/copyboard.type'
 import { baseURL } from '~/config/backend'
 
 interface CopyboardState {

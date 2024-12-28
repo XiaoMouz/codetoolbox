@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Content } from '~/types/copyboard.type'
+import type { Content } from '~/types/dto/copyboard.type'
 
 useHead({
   title: 'Online Copyboard',

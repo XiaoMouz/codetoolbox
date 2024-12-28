@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Label } from '@/components/ui/label'
-import type { Content } from '~/types/copyboard.type'
+import type { Content } from '~/types/dto/copyboard.type'
 
 const item = defineModel({
   type: Object as PropType<Content>,

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type { TokenSession } from '~/types/user.type'
+import type { TokenSession } from '~/types/dto/user.type'
 import { baseURL } from '~/config/backend'
 
 interface UserState {
