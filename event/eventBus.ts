@@ -1,5 +1,7 @@
 type EventCallback<T = any> = (data: T) => void
 
+// TODO: Type bind callback function argument to event type
+
 const eventTypes = [
   'TOAST:INFO',
   'TOAST:ERROR',
@@ -9,6 +11,9 @@ const eventTypes = [
   'API:DELETECOPYBOARD',
   'API:UPDATECOPYBOARD',
   'API:SYNCCOPYBOARD',
+  'API:AUTH_EXPIRED',
+  'API:AUTH_ERROR',
+  'API:AUTH_REQUIRE',
 ] as const
 
 type EventType = (typeof eventTypes)[number]

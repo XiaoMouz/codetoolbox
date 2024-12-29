@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import type { TokenSession } from '~/types/dto/user.type'
 import { baseURL } from '~/config/backend'
+import { eventBus } from '~/event/eventBus'
 
 interface UserState {
   session: TokenSession | null
@@ -29,6 +30,7 @@ export const useUserStore = defineStore('user', {
 
         if (!response.ok) {
           const errorData = await response.json()
+          eventBus.publish('API:AUTH_ERROR', errorData)
           throw new Error(errorData.message || 'Login failed')
         }
 
@@ -37,6 +39,7 @@ export const useUserStore = defineStore('user', {
         return { success: true }
       } catch (error: any) {
         console.error('Login failed:', error)
+        eventBus.publish('API:AUTH_ERROR', error)
         return { success: false, message: error.message }
       }
     },
@@ -55,6 +58,7 @@ export const useUserStore = defineStore('user', {
 
         if (!response.ok) {
           const errorData = await response.json()
+          eventBus.publish('API:AUTH_ERROR', errorData)
           throw new Error(errorData.message || 'Refresh failed')
         }
 
