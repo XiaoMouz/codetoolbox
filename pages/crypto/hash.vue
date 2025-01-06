@@ -45,7 +45,7 @@ const { copy, paste } = useCVHotkey(content, result)
 </script>
 <template>
   <div class="flex h-full w-full flex-col items-center mb-8">
-    <div class="w-[70%] h-full flex flex-col items-start gap-6">
+    <div class="w-[90%] xl:w-[70%] h-full flex flex-col items-start gap-6">
       <Title title="Hash" icon="mdi:lock" description="Hash" />
       <Textarea class="h-[30vh] w-full" v-model:model-value="content" />
       <div class="flex flex-row gap-4 flex-wrap items-center">

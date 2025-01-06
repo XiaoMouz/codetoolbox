@@ -60,7 +60,7 @@ async function convert(file: File) {
 </script>
 <template>
   <div class="flex h-full w-full flex-col items-center mb-8">
-    <div class="w-[70%] h-full flex flex-col items-start gap-6">
+    <div class="w-[90%] xl:w-[70%] h-full flex flex-col items-start gap-6">
       <Alert class="flex">
         <Icon class="size-4 mr-2 mt-1" name="mdi:alert-circle-outline" />
         <div>

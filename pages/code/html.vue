@@ -101,7 +101,10 @@ function paste() {
 </script>
 <template>
   <div class="flex h-full w-full flex-col items-center">
-    <div v-show="loaded" class="w-[70%] h-full flex flex-col items-start gap-6">
+    <div
+      v-show="loaded"
+      class="w-[90%] xl:w-[70%] h-full flex flex-col items-start gap-6"
+    >
       <Title
         title="HTML"
         description="HTML Formatter, Compressor"

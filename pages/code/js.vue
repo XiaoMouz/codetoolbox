@@ -9,8 +9,6 @@ import javascriptObfuscator from 'javascript-obfuscator'
 
 import { minify } from 'terser'
 
-
-
 useHead({
   title: 'JavaScript Formatter, Compressor',
   meta: [
@@ -174,7 +172,10 @@ function paste() {
 </script>
 <template>
   <div class="flex h-full w-full flex-col items-center">
-    <div v-show="loaded" class="w-[70%] h-full flex flex-col items-start gap-6">
+    <div
+      v-show="loaded"
+      class="w-[90%] xl:w-[70%] h-full flex flex-col items-start gap-6"
+    >
       <Title
         title="JavaScript"
         icon="mdi:language-javascript"
