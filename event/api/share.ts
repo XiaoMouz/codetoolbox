@@ -1,0 +1,10 @@
+import { Event } from '../event'
+
+const evnets = [
+  'API:UPDATECOPYBOARDLIST',
+  'API:GETCOPYBOARD',
+  'API:POSTCOPYBOARD',
+  'API:DELETECOPYBOARD',
+  'API:UPDATECOPYBOARD',
+  'API:SYNCCOPYBOARD',
+]
