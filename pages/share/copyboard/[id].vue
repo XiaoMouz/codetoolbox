@@ -22,6 +22,17 @@ function haveLocal(id: string): boolean {
   return local.value.find((i) => i.body.id === id) ? true : false
 }
 
+// get id from route
+const route = useRoute()
+const router = useRouter()
+const loading = ref(false)
+
+const paramId = route.params.id.toString()
+console.log(paramId)
+let itemIndex = computed(() => {
+  return local.value.findIndex((i) => i.body.id === paramId)
+})
+
 let item = ref<Content>({
   id: '',
   name: '',
@@ -35,39 +46,32 @@ let item = ref<Content>({
   private: false,
   history: [],
 })
-// get id from route
-const route = useRoute()
-const router = useRouter()
-const loading = ref(false)
+
+getRemoteCopyboard(paramId)
 
 onMounted(async () => {
-  const paramId = route.params.id.toString()
-  console.log(paramId)
-
   let result = local.value.find((i) => (i.body ? i.body.id === paramId : false))
   console.log(local.value)
   // if not exist in local, get from remote
-  if (!result) {
-    const bol = await getRemoteCopyboard(paramId)
-    item.value = bol
-      ? (local.value.find((i) => (i.body ? i.body.id === paramId : false))
-          ?.body ?? item.value)
-      : item.value
-  }
 
   item.value = result ? result?.body : item.value
+  let localIndex = local.value.findIndex((i) =>
+    i.body ? i.body.id === paramId : false
+  )
+  local.value[localIndex] = { body: item.value, updateAt: Date.now() }
 
   if (!item.value) {
     router.push('/share/copyboard/new')
   }
   useHead({
-    title: item.value.name,
+    title: local.value[localIndex].body.name,
   })
   loading.value = true
 })
 
 //watch local
 watch(local, (val) => {
+  console.log('update')
   const paramId = route.params.id.toString()
   let result = val.find((i) => (i.body ? i.body.id === paramId : false))
   item.value = result ? result?.body : item.value
@@ -77,7 +81,10 @@ watch(local, (val) => {
 <template>
   <ClientOnly>
     <div v-if="loading">
-      <CopyboardForm @save="putCopyboard(item)" v-model="item" />
+      <CopyboardForm
+        @save="putCopyboard(local[itemIndex].body)"
+        v-model="local[itemIndex].body"
+      />
     </div>
   </ClientOnly>
 </template>

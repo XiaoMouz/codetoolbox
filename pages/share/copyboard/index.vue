@@ -29,7 +29,7 @@ useHead({
 
 <template>
   <div class="flex h-full w-full flex-col items-center mb-8">
-    <div class="w-[70%] h-full flex flex-col items-start gap-6">
+    <div class="w-[90%] xl:w-[70%] h-full flex flex-col items-start gap-6">
       <Title
         title="Online Copyboard"
         icon="mdi:file-cloud"

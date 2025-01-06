@@ -27,7 +27,7 @@ function haveLocal(id: string): boolean {
 getRemoteCopyboardList()
 </script>
 <template>
-  <div class="flex gap-6 flex-col">
+  <div class="flex w-full gap-6 flex-col">
     <div class="flex gap-2">
       <Button
         @click="
@@ -50,7 +50,7 @@ getRemoteCopyboardList()
         <h1 class="text-xl">Remote Copyboard List</h1>
       </div>
       <div
-        class="flex justify-center items-center h-full w-full border relative rounded-lg gap-4 flex-col flex-wrap p-2"
+        class="flex justify-center items-center h-full w-full border relative rounded-lg gap-4 flex-wrap p-2"
       >
         <div
           v-if="loading"
@@ -60,7 +60,7 @@ getRemoteCopyboardList()
         </div>
         <button
           v-if="remote?.length"
-          class="flex items-center p-1 px-2 border-2 rounded-lg justify-center gap-1 hover:bg-muted transition-all duration-100"
+          class="flex items-center w-full md:w-72 truncate text-nowrap overflow-hidden h-full p-1 px-2 border-2 rounded-lg justify-center gap-1 hover:bg-muted transition-all duration-100"
           v-for="i in remote"
           :key="i.id"
           @click="
@@ -78,7 +78,7 @@ getRemoteCopyboardList()
                 : 'mdi:cloud-arrow-down-outline'
             "
           />
-          {{ i.name }}
+          <span class="truncate text-nowrap">{{ i.name?i.name:"<<NO NAME COPYBOARD>>" }}</span>
         </button>
         <div v-else>
           <Badge class="mt-1" variant="secondary"
@@ -104,7 +104,7 @@ getRemoteCopyboardList()
         <h1 class="text-xl">Local Copyboards</h1>
       </div>
       <div
-        class="flex justify-center items-center h-full w-full border relative rounded-lg gap-4 flex-col flex-wrap p-2"
+        class="flex items-center h-full border relative rounded-lg gap-4 flex-row flex-wrap p-2"
       >
         <div
           v-if="false"

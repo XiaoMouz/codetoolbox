@@ -107,6 +107,10 @@ export const useCopyboardStore = defineStore('copyboard', {
           (res) => res.json() as Promise<{ message: string; info: Content }>
         )
         .then((data) => {
+          if (!data.info) {
+            this.loading = false
+            return
+          }
           this.loading = false
           this.local.forEach((item) => {
             if (item.body.id === content.id) {
@@ -136,6 +140,10 @@ export const useCopyboardStore = defineStore('copyboard', {
       })
         .then((res) => res.json())
         .then((data) => {
+          if (!data.info) {
+            this.loading = false
+            return false
+          }
           // search local ,if have update it, else push it
           const index = this.local.findIndex((item) => item.body.id === id)
           if (index !== -1) {

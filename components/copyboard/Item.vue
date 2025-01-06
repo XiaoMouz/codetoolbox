@@ -22,7 +22,7 @@ function isExpired(item: Content) {
 </script>
 <template>
   <div
-    class="flex items-center cursor-pointer relative p-1 px-2 border-2 rounded-lg justify-center gap-1 hover:bg-muted transition-all duration-100"
+    class="flex w-full md:w-72 items-center cursor-pointer relative p-1 px-2 border-2 rounded-lg justify-start gap-1 hover:bg-muted transition-all duration-100"
     @click="
       () => {
         getRemoteCopyboard(item.id)
@@ -38,9 +38,11 @@ function isExpired(item: Content) {
           : 'mdi:clipboard-edit-outline'
       "
     />
-    <div class="flex flex-col gap-1 z-10">
+    <div class="flex flex-col gap-1 z-10 overflow-hidden">
       <div class="flex flex-row gap-1 items-center">
-        <Icon name="mdi:tag" />{{ item.name }}
+        <Icon name="mdi:tag" /><span class="text-nowrap truncate">{{
+          item.name
+        }}</span>
       </div>
       <div class="flex flex-row gap-1 items-center">
         <Icon name="mdi:clock-plus-outline" />

@@ -10,6 +10,16 @@ const item = defineModel({
 const emit = defineEmits<{
   (e: 'save'): void
 }>()
+
+const saveState = ref(true)
+
+const save = () => {
+  emit('save')
+  saveState.value = false
+  setTimeout(() => {
+    saveState.value = true
+  }, 1000)
+}
 </script>
 <template>
   <div class="flex h-full w-full flex-col items-center mb-8">
@@ -53,7 +63,12 @@ const emit = defineEmits<{
                   {{ new Date(item.modifiedAt).toLocaleString() }}
                 </Label>
               </div>
-              <Button @click="$emit('save')" variant="outline" class="w-full">
+              <Button
+                @click="save"
+                :disabled="!saveState"
+                variant="outline"
+                class="w-full"
+              >
                 <Icon name="mdi:cloud-upload-outline" class="mr-1 size-4" />
                 Save
               </Button>
