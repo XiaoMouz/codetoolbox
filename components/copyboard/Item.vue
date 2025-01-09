@@ -49,7 +49,9 @@ function isExpired(item: Content) {
         {{ new Date(item.createdAt).toLocaleString() }}
       </div>
       <div class="flex flex-row gap-1 items-center">
-        <Icon name="mdi:delete-clock-outline" /> {{ item.expireAt }}
+        <Icon name="mdi:delete-clock-outline" />{{
+          new Date(item.expireAt).toLocaleString()
+        }}
       </div>
       <div class="flex flex-row gap-1 items-center">
         <Icon name="mdi:account-file-text-outline" /> {{ item.uploader }}

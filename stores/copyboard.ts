@@ -167,6 +167,35 @@ export const useCopyboardStore = defineStore('copyboard', {
         this.local[index].updateAt = Date.now()
       }
     },
+    async deleteCopyboard(id: string) {
+      const user = useUserStore()
+      this.loading = true
+      this.local = this.local.filter((item) => item.body.id !== id)
+      await fetch(`${baseURL}/tool/copyboard/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `${user.session?.token}:${user.session?.user.email}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.message === 'success') {
+            this.getRemoteCopyboardList()
+            this.loading = false
+            return true
+          }
+          this.loading = false
+          return false
+        })
+        .catch((err) => {
+          console.error(err)
+          this.loading = false
+          return false
+        })
+      this.loading = false
+      return false
+    },
   },
   persist: {
     storage: piniaPluginPersistedstate.localStorage(),

@@ -13,6 +13,7 @@ const {
   getRemoteCopyboard,
   getRemoteCopyboardList,
   newCopyboard,
+  deleteCopyboard,
   putCopyboard,
 } = store
 const { remote, local } = storeToRefs(store)
@@ -63,9 +64,7 @@ onMounted(async () => {
   if (!item.value) {
     router.push('/share/copyboard/new')
   }
-  useHead({
-    title: local.value[localIndex].body.name,
-  })
+
   loading.value = true
 })
 
@@ -75,6 +74,9 @@ watch(local, (val) => {
   const paramId = route.params.id.toString()
   let result = val.find((i) => (i.body ? i.body.id === paramId : false))
   item.value = result ? result?.body : item.value
+  useHead({
+    title: item.value.name,
+  })
 })
 </script>
 
@@ -83,6 +85,7 @@ watch(local, (val) => {
     <div v-if="loading">
       <CopyboardForm
         @save="putCopyboard(local[itemIndex].body)"
+        @delete="deleteCopyboard(item.id)"
         v-model="local[itemIndex].body"
       />
     </div>
