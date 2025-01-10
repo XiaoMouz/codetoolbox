@@ -50,7 +50,7 @@ getRemoteCopyboardList()
         <h1 class="text-xl">Remote Copyboard List</h1>
       </div>
       <div
-        class="flex justify-center items-center h-full w-full border relative rounded-lg gap-4 flex-wrap p-2"
+        class="flex  items-center h-full w-full border relative rounded-lg gap-4 flex-wrap p-2"
       >
         <div
           v-if="loading"

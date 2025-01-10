@@ -76,6 +76,15 @@ function reciveImage(e: Event) {
 onMounted(() => {
   loaded.value = true
 })
+
+function download() {
+  console.log('nihao')
+  // download id is 'qrcode' element (img)
+  const link = document.createElement('a')
+  link.download = 'qrcode.png'
+  link.href = document.getElementById('qrcode')?.getAttribute('src') as string
+  link.click()
+}
 </script>
 <template>
   <div class="flex h-full w-full flex-col items-center mb-8">
@@ -187,6 +196,10 @@ onMounted(() => {
               />
             </div>
           </div>
+          <Button @click="download">
+            <Icon name="mdi:download" class="mr-1 size-4" />
+            Download
+          </Button>
           <div v-if="config.image" class="flex flex-row items-center gap-2">
             <Icon name="mdi:image-size-select-large" class="size-6" />
             <div class="flex flex-col gap-1">

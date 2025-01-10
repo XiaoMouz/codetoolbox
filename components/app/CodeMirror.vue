@@ -47,7 +47,7 @@ const handleReady = (payload: {
 </script>
 <template>
   <ClientOnly>
-    <ScrollArea class="w-full h-[55vh] rounded shadow-lg">
+    <ScrollArea class="w-full max-h-[65dvh] rounded shadow-lg">
       <codemirror
         v-model="code"
         :key="renderRequire"

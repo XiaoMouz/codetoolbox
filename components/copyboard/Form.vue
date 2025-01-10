@@ -69,7 +69,7 @@ watch(dark, (value) => {
         <Input v-model="item.name" placeholder="Copyboard Title" />
       </div>
       <div class="flex flex-col md:flex-row w-full h-full gap-4">
-        <div class="">
+        <div class="flex flex-col gap-4">
           <div class="flex border p-2 rounded-xl shadow-lg flex-col gap-2">
             <div class="flex flex-col gap-2">
               <div class="flex flex-row gap-2 items-center">
@@ -110,7 +110,10 @@ watch(dark, (value) => {
               </Button>
             </div>
           </div>
-          <div class="flex border p-2 rounded-xl shadow-lg gap-2">
+          <div
+            v-if="item.id != ''"
+            class="flex border p-2 rounded-xl shadow-lg gap-2"
+          >
             <Dialog>
               <DialogTrigger as-child>
                 <Button variant="outline">
@@ -185,8 +188,8 @@ watch(dark, (value) => {
           </div>
         </div>
 
-        <div class="w-full min-h-64">
-          <Textarea v-model="item.content" class="min-h-64" />
+        <div class="w-full">
+          <Textarea v-model="item.content" class="h-full" />
         </div>
       </div>
     </div>

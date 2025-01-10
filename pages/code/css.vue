@@ -135,6 +135,7 @@ function paste() {
         description="CSS Formatter, Compressor"
       />
       <AppCodeMirror
+        class="flex-1"
         v-model="code"
         @loaded="
           () => {

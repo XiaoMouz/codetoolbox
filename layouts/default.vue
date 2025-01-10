@@ -1,11 +1,11 @@
 <template>
   <ScrollArea>
     <div
-      class="w-screen min-h-screen overflow-x-hidden flex flex-col items-center gap-6"
+      class="w-screen min-h-[100dvh] overflow-x-hidden flex flex-col items-center gap-6"
     >
       <Header v-if="$route.path != '/'" />
       <span v-else>&nbsp;</span>
-      <main class="w-full h-full">
+      <main class="w-full h-full flex-1">
         <NuxtPage />
       </main>
     </div>

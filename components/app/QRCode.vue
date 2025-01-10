@@ -25,6 +25,7 @@ export default {
       return h('img', {
         src: qrcode.encodeAsBase64(props.options),
         alt: 'QR Code',
+        id: 'qrcode',
       })
     }
   },
