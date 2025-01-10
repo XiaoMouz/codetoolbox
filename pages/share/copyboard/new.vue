@@ -36,15 +36,12 @@ const item = ref<Content>({
 const router = useRouter()
 
 async function upload() {
-  console.log('Uploaded')
   const result = await newCopyboard(item.value.content, {
     name: item.value.name,
     private: item.value.private,
     password: item.value.password,
   })
-  console.log(result)
   if (!result) return
-  console.log('Result have return')
   router.push(`/share/copyboard/${result.id}`)
 }
 </script>

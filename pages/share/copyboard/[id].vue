@@ -29,7 +29,6 @@ const router = useRouter()
 const loading = ref(false)
 
 const paramId = route.params.id.toString()
-console.log(paramId)
 let itemIndex = computed(() => {
   return local.value.findIndex((i) => i.body.id === paramId)
 })
@@ -52,7 +51,6 @@ getRemoteCopyboard(paramId)
 
 onMounted(async () => {
   let result = local.value.find((i) => (i.body ? i.body.id === paramId : false))
-  console.log(local.value)
   // if not exist in local, get from remote
 
   item.value = result ? result?.body : item.value
@@ -70,7 +68,6 @@ onMounted(async () => {
 
 //watch local
 watch(local, (val) => {
-  console.log('update')
   const paramId = route.params.id.toString()
   let result = val.find((i) => (i.body ? i.body.id === paramId : false))
   item.value = result ? result?.body : item.value

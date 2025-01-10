@@ -76,7 +76,6 @@ export const useCopyboardStore = defineStore('copyboard', {
             body: data.info,
             updateAt: Date.now(),
           })
-          console.log(data)
           return data.info
         })
         .catch((err) => {
