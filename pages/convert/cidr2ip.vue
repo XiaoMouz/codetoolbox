@@ -93,6 +93,21 @@ const result = computed(() => {
       }
     })
 })
+
+const exportAsCSV = () => {
+  const header = columns.value
+    .filter((i) => i.enabled)
+    .map((i) => i.label)
+    .join(',')
+  const csv = result.value.map((i) => i?.join(',')).join('\n')
+  const blob = new Blob([header + '\n' + csv], { type: 'text/csv' })
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = 'cidr2ip.csv'
+  a.click()
+  URL.revokeObjectURL(url)
+}
 </script>
 <template>
   <div class="flex h-full w-full flex-col items-center mb-8">
@@ -117,6 +132,9 @@ const result = computed(() => {
             >{{ column.label }}</Label
           >
         </div>
+        <Button @click="exportAsCSV" variant="secondary"
+          ><Icon name="mdi:export-variant" />Exports as CSV</Button
+        >
       </div>
       <Table>
         <TableHeader>
