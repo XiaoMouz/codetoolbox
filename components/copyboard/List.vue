@@ -39,8 +39,8 @@ getRemoteCopyboardList()
         <Icon name="mdi:plus" class="mr-1 size-4" />
         New
       </Button>
-      <Button variant="outline">
-        <Icon name="mdi:cloud-refresh-outline" class="mr-1 size-4" />
+      <Button variant="outline" disabled>
+        <Icon name="mdi:cloud-refresh-outline"  class="mr-1 size-4" />
         Delete Expired
       </Button>
     </div>

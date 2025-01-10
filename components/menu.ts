@@ -118,7 +118,6 @@ const shareMenu: Menu[] = [
     to: '/share/copyboard',
     description: 'Share your text',
     icon: 'mdi:file-cloud',
-    state: 'wip',
   },
   {
     title: 'File Share',

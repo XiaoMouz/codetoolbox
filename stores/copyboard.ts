@@ -54,7 +54,7 @@ export const useCopyboardStore = defineStore('copyboard', {
     ): Promise<Content | null> {
       this.loading = true
       const user = useUserStore()
-      await fetch(`${baseURL}/tool/copyboard`, {
+      return await fetch(`${baseURL}/tool/copyboard`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -76,6 +76,7 @@ export const useCopyboardStore = defineStore('copyboard', {
             body: data.info,
             updateAt: Date.now(),
           })
+          console.log(data)
           return data.info
         })
         .catch((err) => {
@@ -83,8 +84,6 @@ export const useCopyboardStore = defineStore('copyboard', {
           this.loading = false
           return null
         })
-      this.loading = false
-      return null
     },
     async putCopyboard(content: Content) {
       const user = useUserStore()

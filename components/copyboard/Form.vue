@@ -16,14 +16,11 @@ const emit = defineEmits<{
   (e: 'delete'): void
 }>()
 
-const saveState = ref(true)
-const save = () => {
-  saveState.value = false
-  emit('save')
+const store = useCopyboardStore()
+const { loading } = storeToRefs(store)
 
-  setTimeout(() => {
-    saveState.value = true
-  }, 1000)
+const save = () => {
+  emit('save')
 }
 
 const router = useRouter()
@@ -101,7 +98,7 @@ watch(dark, (value) => {
               </div>
               <Button
                 @click="save"
-                :disabled="!saveState"
+                :disabled="loading"
                 variant="outline"
                 class="w-full"
               >

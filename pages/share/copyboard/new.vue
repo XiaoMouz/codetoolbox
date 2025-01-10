@@ -42,7 +42,7 @@ async function upload() {
     private: item.value.private,
     password: item.value.password,
   })
-
+  console.log(result)
   if (!result) return
   console.log('Result have return')
   router.push(`/share/copyboard/${result.id}`)
