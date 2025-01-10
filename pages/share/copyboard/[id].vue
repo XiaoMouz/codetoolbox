@@ -82,7 +82,7 @@ watch(local, (val) => {
 
 <template>
   <ClientOnly>
-    <div v-if="loading">
+    <div class="h-full w-full flex-1 flex" v-if="loading">
       <CopyboardForm
         @save="putCopyboard(local[itemIndex].body)"
         @delete="deleteCopyboard(item.id)"

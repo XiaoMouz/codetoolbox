@@ -58,12 +58,12 @@ watch(dark, (value) => {
 })
 </script>
 <template>
-  <div class="flex h-full w-full flex-col items-center mb-8">
+  <div class="flex flex-1 relative w-full flex-col items-center gap-2 mb-8">
     <div class="flex flex-row gap-2 items-center">
       <Icon name="mdi:clipboard-edit-outline" class="size-5" />
       <h1 class="text-xl">Copyboard</h1>
     </div>
-    <div class="w-[80%] h-full flex flex-col items-start gap-6">
+    <div class="w-[80%] flex-1 h-full flex flex-col items-start gap-6">
       <div class="flex flex-row w-full gap-2 items-center">
         <Icon name="mdi:tag" class="size-5" />
         <Input v-model="item.name" placeholder="Copyboard Title" />

@@ -36,6 +36,7 @@ const item = ref<Content>({
 const router = useRouter()
 
 async function upload() {
+  console.log('Uploaded')
   const result = await newCopyboard(item.value.content, {
     name: item.value.name,
     private: item.value.private,
@@ -43,12 +44,13 @@ async function upload() {
   })
 
   if (!result) return
+  console.log('Result have return')
   router.push(`/share/copyboard/${result.id}`)
 }
 </script>
 
 <template>
-  <div>
+  <div class="h-full w-full flex-1 flex">
     <ClientOnly>
       <CopyboardForm
         @save="upload"

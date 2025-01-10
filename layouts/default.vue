@@ -5,7 +5,7 @@
     >
       <Header v-if="$route.path != '/'" />
       <span v-else>&nbsp;</span>
-      <main class="w-full h-full flex-1">
+      <main class="w-full h-full flex flex-col flex-1">
         <NuxtPage />
       </main>
     </div>
