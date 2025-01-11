@@ -26,6 +26,7 @@
     "@vercel/analytics": "^1.4.1",
     "@vueuse/core": "^11.2.0",
     "@vueuse/nuxt": "^11.2.0",
+    "axios": "^1.7.9",
     "cidr-regex": "^4.1.1",
     "class-variance-authority": "^0.7.0",
     "clean-css": "^5.3.3",

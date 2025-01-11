@@ -101,11 +101,13 @@ async function onSubmit(event: Event) {
         </form>
       </CardContent>
       <CardFooter>
-        <span>The user authentication is provided by&nbsp;</span>
-        <a href="https://service.mou.best"
-          ><code class="hover:underline hover:underline-offset-2"
-            >service</code
-          ></a
+        <span>
+          The user authentication is provided by&nbsp;
+          <a href="https://service.mou.best"
+            ><code class="hover:underline hover:underline-offset-2"
+              >service</code
+            ></a
+          ></span
         >
       </CardFooter>
     </Card>
