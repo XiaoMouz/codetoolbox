@@ -8,12 +8,14 @@ export interface File {
   r2Link: string
   status: 'active' | 'frozen'
   private: boolean
-  password: string | undefined
+  password?: string
   fileSize: number
-  description: string | undefined
+  description?: string
+  binaryName?: string
   downloadToken?: string
   downloadTime: number
-  comments: Comment[] | undefined
+  comments?: Comment[]
+  mimeType?: string
 }
 export interface Comment {
   id: string
