@@ -32,7 +32,7 @@ const onSubmit = form.handleSubmit((values) => {
 
 const setRandomPassword = () => {
     form.setFieldValue('password', Math.random().toString(36).slice(-8))
-    navigator.clipboard.writeText(form.values.password)
+    form.values.password ? navigator.clipboard.writeText(form.values.password) : null
     toast({
         title: 'Random password copied',
         description: 'Password copied to clipboard',
