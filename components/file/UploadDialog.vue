@@ -11,7 +11,15 @@ import {
     FormLabel,
     FormMessage
 } from '@/components/ui/form'
+
 import { useToast } from '../ui/toast'
+
+const userStore = useUserStore()
+const { session } = storeToRefs(userStore)
+
+const userAuthed = computed(() => {
+    return session.value && !userStore.isTokenExpired()
+})
 
 const { toast } = useToast()
 
@@ -19,7 +27,7 @@ const formSchema = toTypedSchema(z.object({
     title: z.string().max(50).optional().default('Untitled-' + Date.now()),
     description: z.string().min(2).max(200).optional(),
     private: z.boolean().default(false),
-    password: z.string().min(6).max(50).optional(),
+    password: z.string().min(4).max(50).optional(),
 }))
 
 const form = useForm({
@@ -44,7 +52,7 @@ const setRandomPassword = () => {
 <template>
     <Dialog>
         <DialogTrigger as-child>
-            <Button>
+            <Button :disabled="!userAuthed">
                 <Icon name="mdi:upload-box-outline" class="size-5" />
                 <span>Upload</span>
             </Button>
@@ -92,7 +100,6 @@ const setRandomPassword = () => {
                                                     <FormMessage />
                                                 </FormItem>
                                             </FormField>
-                                            <Input type="file" />
                                         </fieldset>
 
                                     </div>
@@ -105,7 +112,10 @@ const setRandomPassword = () => {
                                                 class="-ml-1 px-1 text-sm font-medium flex flex-row items-center gap-1">
                                                 <Icon name="mdi:file" /> <span>File</span>
                                             </legend>
-                                            <Uploader />
+                                            <!-- <Uploader /> -->
+
+                                            <Input type="file" />
+
                                         </fieldset>
 
                                     </div>
