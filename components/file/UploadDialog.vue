@@ -2,6 +2,8 @@
 import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import * as z from 'zod'
+import { EventMissionQueue, fileEventBus as fileEventBus, updateMission, finishMission, newMission } from '~/event/api/file'
+
 
 import {
     FormControl,
@@ -23,11 +25,15 @@ const userAuthed = computed(() => {
 
 const { toast } = useToast()
 
+
+const forzen = ref(false)
+
 const formSchema = toTypedSchema(z.object({
-    title: z.string().max(50).optional().default('Untitled-' + Date.now()),
+    title: z.string().max(50).optional(),
     description: z.string().min(2).max(200).optional(),
     private: z.boolean().default(false),
     password: z.string().min(4).max(50).optional(),
+    file: z.any().optional(),
 }))
 
 const form = useForm({
@@ -36,7 +42,30 @@ const form = useForm({
 
 const onSubmit = form.handleSubmit((values) => {
     console.log('Form submitted!', values)
+    // create a xhr request 
+    const xhr = new XMLHttpRequest()
+    xhr.open('POST', 'https://api.mou.best/tool/file/', true)
+    xhr.setRequestHeader('Authorization', session.value ? `${session.value.token}:${session.value.user.email}` : ' ')
+
+    // build payload
+    const formData = new FormData()
+    values.title ? formData.append('title', values.title) : {}
+    values.description ? formData.append('description', values.description) : {}
+    formData.append('private', values.private.toString())
+    values.password ? formData.append('password', values.password) : {}
+    values.file ? formData.append('file', values.file) : {}
+
+    
+
+    xhr.upload.addEventListener('progress', (e) => {
+        console.log(e)
+    })
+
+    xhr.send(formData)
+
 })
+
+
 
 const setRandomPassword = () => {
     form.setFieldValue('password', Math.random().toString(36).slice(-8))
@@ -78,7 +107,8 @@ const setRandomPassword = () => {
                                                 <FormItem>
                                                     <FormLabel>Title</FormLabel>
                                                     <FormControl>
-                                                        <Input type="text" :placeholder="'Untitled-' + Date.now()"
+                                                        <Input :disabled="forzen" type="text"
+                                                            :placeholder="'Untitled-' + Date.now()"
                                                             v-bind="componentField" />
                                                     </FormControl>
                                                     <FormDescription>
@@ -91,7 +121,7 @@ const setRandomPassword = () => {
                                                 <FormItem>
                                                     <FormLabel>Description</FormLabel>
                                                     <FormControl>
-                                                        <Textarea type="text" :placeholder="''"
+                                                        <Textarea type="text" :disabled="forzen" :placeholder="''"
                                                             v-bind="componentField" />
                                                     </FormControl>
                                                     <FormDescription>
@@ -113,8 +143,19 @@ const setRandomPassword = () => {
                                                 <Icon name="mdi:file" /> <span>File</span>
                                             </legend>
                                             <!-- <Uploader /> -->
+                                            <FormField v-slot="{ componentField }" name="file">
+                                                <FormItem>
+                                                    <FormLabel>File</FormLabel>
+                                                    <FormControl>
+                                                        <Input :disabled="forzen" type="file" v-bind="componentField" />
+                                                    </FormControl>
+                                                    <FormDescription>
+                                                        Select a file to upload.
+                                                    </FormDescription>
+                                                    <FormMessage />
+                                                </FormItem>
 
-                                            <Input type="file" />
+                                            </FormField>
 
                                         </fieldset>
 
@@ -130,7 +171,7 @@ const setRandomPassword = () => {
                                                     <div class="flex justify-between items-center">
                                                         <FormLabel>Private?</FormLabel>
                                                         <FormControl>
-                                                            <Switch v-bind="componentField" />
+                                                            <Switch :disabled="forzen" v-bind="componentField" />
                                                         </FormControl>
                                                     </div>
                                                     <FormDescription>
@@ -145,13 +186,15 @@ const setRandomPassword = () => {
                                                         Password
                                                     </FormLabel>
                                                     <FormControl>
-                                                        <Input type="password" placeholder="Keep empty for public file"
+                                                        <Input :disabled="forzen" type="password"
+                                                            placeholder="Keep empty for public file"
                                                             v-bind="componentField" />
                                                     </FormControl>
                                                     <FormDescription>
                                                         Set a password to protect your file.
                                                     </FormDescription>
-                                                    <Button @click="setRandomPassword" variant="ghost">
+                                                    <Button :disabled="forzen" @click="setRandomPassword"
+                                                        variant="ghost">
                                                         <Icon name="mdi:refresh" /> Random
                                                     </Button>
                                                     <FormMessage />
@@ -162,7 +205,7 @@ const setRandomPassword = () => {
                                     </div>
                                 </div>
                             </div>
-                            <Button class="mt-4" type="submit">
+                            <Button :disabled="forzen" class="mt-4" type="submit">
                                 Submit
                             </Button>
                         </div>
