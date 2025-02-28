@@ -26,7 +26,7 @@ const userAuthed = computed(() => {
 const { toast } = useToast()
 
 
-const forzen = ref(false)
+const freezen = ref(false)
 
 const formSchema = toTypedSchema(z.object({
     title: z.string().max(50).optional(),
@@ -39,6 +39,8 @@ const formSchema = toTypedSchema(z.object({
 const form = useForm({
     validationSchema: formSchema,
 })
+
+const progress = ref(0)
 
 const onSubmit = form.handleSubmit((values) => {
     console.log('Form submitted!', values)
@@ -53,18 +55,23 @@ const onSubmit = form.handleSubmit((values) => {
     values.description ? formData.append('description', values.description) : {}
     formData.append('private', values.private.toString())
     values.password ? formData.append('password', values.password) : {}
-    values.file ? formData.append('file', values.file) : {}
-
-    
+    values.file ? formData.append('data', values.file) : {}
 
     xhr.upload.addEventListener('progress', (e) => {
         console.log(e)
+        progress.value = Math.round((e.loaded / e.total) * 100)
     })
 
     xhr.send(formData)
-
+    freezen.value = true
 })
 
+
+onUnmounted(() => {
+    form.resetForm()
+    freezen.value = false
+    progress.value = 0
+})
 
 
 const setRandomPassword = () => {
@@ -107,7 +114,7 @@ const setRandomPassword = () => {
                                                 <FormItem>
                                                     <FormLabel>Title</FormLabel>
                                                     <FormControl>
-                                                        <Input :disabled="forzen" type="text"
+                                                        <Input :disabled="freezen" type="text"
                                                             :placeholder="'Untitled-' + Date.now()"
                                                             v-bind="componentField" />
                                                     </FormControl>
@@ -121,7 +128,7 @@ const setRandomPassword = () => {
                                                 <FormItem>
                                                     <FormLabel>Description</FormLabel>
                                                     <FormControl>
-                                                        <Textarea type="text" :disabled="forzen" :placeholder="''"
+                                                        <Textarea type="text" :disabled="freezen" :placeholder="''"
                                                             v-bind="componentField" />
                                                     </FormControl>
                                                     <FormDescription>
@@ -147,7 +154,8 @@ const setRandomPassword = () => {
                                                 <FormItem>
                                                     <FormLabel>File</FormLabel>
                                                     <FormControl>
-                                                        <Input :disabled="forzen" type="file" v-bind="componentField" />
+                                                        <Input :disabled="freezen" type="file"
+                                                            v-bind="componentField" />
                                                     </FormControl>
                                                     <FormDescription>
                                                         Select a file to upload.
@@ -171,7 +179,7 @@ const setRandomPassword = () => {
                                                     <div class="flex justify-between items-center">
                                                         <FormLabel>Private?</FormLabel>
                                                         <FormControl>
-                                                            <Switch :disabled="forzen" v-bind="componentField" />
+                                                            <Switch :disabled="freezen" v-bind="componentField" />
                                                         </FormControl>
                                                     </div>
                                                     <FormDescription>
@@ -186,14 +194,14 @@ const setRandomPassword = () => {
                                                         Password
                                                     </FormLabel>
                                                     <FormControl>
-                                                        <Input :disabled="forzen" type="password"
+                                                        <Input :disabled="freezen" type="password"
                                                             placeholder="Keep empty for public file"
                                                             v-bind="componentField" />
                                                     </FormControl>
                                                     <FormDescription>
                                                         Set a password to protect your file.
                                                     </FormDescription>
-                                                    <Button :disabled="forzen" @click="setRandomPassword"
+                                                    <Button :disabled="freezen" @click="setRandomPassword"
                                                         variant="ghost">
                                                         <Icon name="mdi:refresh" /> Random
                                                     </Button>
@@ -205,9 +213,19 @@ const setRandomPassword = () => {
                                     </div>
                                 </div>
                             </div>
-                            <Button :disabled="forzen" class="mt-4" type="submit">
-                                Submit
-                            </Button>
+                            <div class="flex gap-4 items-center">
+                                <Button :disabled="freezen" type="submit">
+                                    <div v-if="!freezen">Submit</div>
+                                    <div v-else class="flex items-center justify-center gap-2">
+                                        <LoadingCycle /> Uploading
+                                    </div>
+                                </Button>
+
+                                <div v-if="freezen" class="flex items-center gap-1 h-full">
+                                    <FileUploadProgressCircle size="24" :progress="progress" />
+                                    {{ progress }}%
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
