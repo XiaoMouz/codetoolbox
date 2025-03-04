@@ -70,6 +70,10 @@ export const useUserStore = defineStore('user', {
     logout() {
       this.session = null
     },
+    /**
+     * Only at local side check token expire.
+     * @returns Whether the token is expired
+     */
     isTokenExpired(): boolean {
       return this.session && this.session.expireAt
         ? Date.now() >= this.session.expireAt

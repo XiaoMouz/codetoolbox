@@ -1,5 +1,32 @@
 <script setup lang="ts">
-// @ts-ignore
+import { useToast } from '@/components/ui/toast'
+import type { FileResponse } from '~/types/dto/file.type'
+const { toast } = useToast()
+const userStore = useUserStore()
+const { session } = storeToRefs(userStore)
+
+
+
+
+const { data, status, error, refresh, clear } = await useFetch<FileResponse>('/api/auth/login', {
+  onRequest({ request, options }) {
+    session.value && options.headers.set('Authorization', session.value.token)
+  },
+  onRequestError({ request, options, error }) {
+
+  },
+  onResponse({ request, response, options }) {
+    // Process the response data
+
+  },
+  onResponseError({ request, response, options }) {
+    toast({
+      title: 'Error',
+      description: 'Failed to fetch data',
+    })
+  }
+})
+
 
 const download = async () => {
   try {
@@ -8,6 +35,8 @@ const download = async () => {
     console.error(error)
   }
 }
+
+
 </script>
 <template>
   <div class="flex h-full w-full flex-col items-center mb-8">

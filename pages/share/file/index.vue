@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import Title from '~/components/Title.vue'
 import { EventMissionQueue, fileEventBus as fileEventBus, updateMission, finishMission } from '~/event/api/file'
+definePageMeta({
+  middleware: 'auth'
+})
+
 
 const userStore = useUserStore()
 const { session } = storeToRefs(userStore)
@@ -12,13 +16,15 @@ type Result = {
   }[]
 }
 
+const { api } = useRuntimeConfig()
+
 const {
   data: lists,
   status: listStatus,
   refresh,
   execute
 } = await useAsyncData('file-list', () =>
-  $fetch<Result>('https://api.mou.best/tool/file/', {
+  $fetch<Result>(api + '/tool/file/', {
     headers: {
       Authorization: session.value
         ? `${session.value.token}:${session.value.user.email}`
@@ -92,7 +98,7 @@ fileEventBus.subscribe('API:UPLOADING', (task) => {
             <div v-else>
               <Badge class="mt-1" variant="secondary">
                 <Icon class="mr-2 size-5" name="mdi:cloud-off-outline" /><span
-                  class="cursor-default">Remote&nbsp;copyboard&nbsp;list&nbsp;is&nbsp;empty</span>
+                  class="cursor-default">Remote&nbsp;file&nbsp;list&nbsp;is&nbsp;empty</span>
               </Badge>
             </div>
           </div>

@@ -10,4 +10,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     'pinia-plugin-persistedstate',
   ],
+  runtimeConfig: {
+    api: 'https://api.mou.best',
+  },
 })

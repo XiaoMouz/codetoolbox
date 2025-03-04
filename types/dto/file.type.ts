@@ -25,3 +25,12 @@ export interface Comment {
   fromIP: string
   content: string
 }
+
+export type FileResponse = {
+  message: string
+  info: File
+  owner: {
+    name: string
+    avatar: string
+  }
+}
