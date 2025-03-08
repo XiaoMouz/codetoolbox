@@ -26,7 +26,8 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
         userStore.session = response._data.session
         return
       } else {
-        return navigateTo('/share/backend/login')
+        // todo: fix backend, mutiple device have different refresh token
+        //return navigateTo('/share/backend/login')
       }
     },
     onResponseError: ({ request, response, error, options }) => {

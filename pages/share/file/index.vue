@@ -58,8 +58,7 @@ fileEventBus.subscribe('API:UPLOADING', (task) => {
 <template>
   <div class="flex h-full w-full flex-col items-center mb-8">
     <div class="w-[90%] xl:w-[80%] h-full flex flex-col items-start gap-6">
-      <Title title="File Share" icon="mdi:cloud-print-outline"
-        description="Small file sharing, storage max 10GB for 7 days" />
+      <Title title="File Share" icon="mdi:cloud-print-outline" description="Single file max 100MB" />
       <div class="flex flex-col gap-8 w-full">
         <div>
           <ClientOnly>

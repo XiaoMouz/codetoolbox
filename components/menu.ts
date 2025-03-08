@@ -110,6 +110,13 @@ const converMenu: Menu[] = [
     description: 'CIDR to IP Range',
     icon: 'mdi:ip-network-outline',
   },
+  {
+    title: 'Singbox Configer',
+    to: '/configer/singbox',
+    description: 'Singbox Configer',
+    icon: 'mdi:server',
+    state: 'wip',
+  },
 ]
 
 const shareMenu: Menu[] = [
@@ -124,7 +131,7 @@ const shareMenu: Menu[] = [
     to: '/share/file',
     description: 'Fast share service',
     icon: 'mdi:cloud-print-outline',
-    state: 'wip',
+    state: 'beta',
   },
 ]
 

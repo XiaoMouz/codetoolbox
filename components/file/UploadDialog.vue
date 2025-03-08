@@ -33,7 +33,7 @@ const formSchema = toTypedSchema(z.object({
     description: z.string().min(2).max(200).optional(),
     private: z.boolean().default(false),
     password: z.string().min(4).max(50).optional(),
-    file: z.any().optional(),
+    file: z.any()
 }))
 
 const form = useForm({
@@ -58,12 +58,21 @@ const onSubmit = form.handleSubmit((values) => {
     values.file ? formData.append('data', values.file) : {}
 
     xhr.upload.addEventListener('progress', (e) => {
-        console.log(e)
+        console.log(Math.round((e.loaded / e.total) * 100))
         progress.value = Math.round((e.loaded / e.total) * 100)
     })
 
     xhr.send(formData)
     freezen.value = true
+
+    xhr.upload.addEventListener('load', () => {
+        freezen.value = false
+        progress.value = 0
+        toast({
+            title: 'Upload complete',
+            description: 'Your file has been uploaded',
+        })
+    })
 })
 
 
@@ -155,7 +164,7 @@ const setRandomPassword = () => {
                                                     <FormLabel>File</FormLabel>
                                                     <FormControl>
                                                         <Input :disabled="freezen" type="file"
-                                                            v-bind="componentField" />
+                                                            @change="form.setFieldValue('file', $event.target.files[0])" />
                                                     </FormControl>
                                                     <FormDescription>
                                                         Select a file to upload.
