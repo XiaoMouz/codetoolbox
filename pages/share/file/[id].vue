@@ -75,7 +75,7 @@ const deleteFile = () => {
   useFetch(baseURL + '/tool/file/' + paramId, {
     method: 'DELETE',
     onRequest({ request, options }) {
-      session.value && options.headers.set('Authorization', session.value.token)
+      session.value && options.headers.set('Authorization', session.value.token + ':' + session.value.user.email)
     },
     onRequestError({ request, options, error }) {
 
