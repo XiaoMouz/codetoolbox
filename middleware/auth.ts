@@ -31,7 +31,8 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     },
     onResponseError: ({ request, response, error, options }) => {
       console.error(error)
-      return navigateTo('/share/backend/login')
+      // todo: fix backend, mutiple device have different refresh token
+      //return navigateTo('/share/backend/login')
     },
   })
 })
