@@ -1,10 +1,11 @@
 import { useUserStore } from '@/stores/auth'
 import { storeToRefs } from 'pinia'
 
+import { baseURL as api } from '~/config/backend'
+
 export default defineNuxtRouteMiddleware(async (to, from) => {
   const userStore = useUserStore()
   const { session } = storeToRefs(userStore)
-  const { api } = useRuntimeConfig()
 
   if (!session.value) {
     return navigateTo('/share/backend/login')
@@ -24,11 +25,13 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
       if (response.status === 200 && response._data.session) {
         userStore.session = response._data.session
         return
+      } else {
+        return navigateTo('/share/backend/login')
       }
     },
     onResponseError: ({ request, response, error, options }) => {
       console.error(error)
+      return navigateTo('/share/backend/login')
     },
   })
-  return navigateTo('/share/backend/login')
 })

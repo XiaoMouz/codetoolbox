@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import Title from '~/components/Title.vue'
 import { EventMissionQueue, fileEventBus as fileEventBus, updateMission, finishMission } from '~/event/api/file'
+import { baseURL as api } from '~/config/backend'
+
 definePageMeta({
   middleware: 'auth'
 })
@@ -15,8 +17,6 @@ type Result = {
     name: string
   }[]
 }
-
-const { api } = useRuntimeConfig()
 
 const {
   data: lists,
