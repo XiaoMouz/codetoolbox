@@ -56,8 +56,9 @@ const download = async () => {
       domain: baseURL,
       path: '/',
       maxAge: 60 * 60 * 24,
+
+      encode: (value) => value || '',
     })
-    downloadToken.value = null
     downloadToken.value = data.value.info.downloadToken
     const a = document.createElement('a')
     a.href = baseURL + '/tool/file/' + data.value.info.id + '/download/'
@@ -99,6 +100,9 @@ const deleteFile = () => {
 
 const deleteConfirm = ref(false)
 
+watchEffect(() => {
+  console.log("Token:", data.value?.info.downloadToken)
+})
 
 </script>
 <template>
