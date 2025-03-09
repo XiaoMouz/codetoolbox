@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useToast } from '@/components/ui/toast'
 import type { FileResponse } from '~/types/dto/file.type'
-import { baseURL } from '~/config/backend'
+import { baseURL, baseDomain } from '~/config/backend'
 
 definePageMeta({
   layout: 'center'
@@ -39,7 +39,7 @@ const { data, status, error, refresh, clear } = await useFetch<FileResponse>(bas
 })
 
 const downloadToken = useCookie('Download-Token', {
-  domain: baseURL,
+  domain: baseDomain,
   path: '/',
   maxAge: 60 * 60 * 24,
 
