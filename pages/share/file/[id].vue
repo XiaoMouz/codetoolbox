@@ -38,6 +38,13 @@ const { data, status, error, refresh, clear } = await useFetch<FileResponse>(bas
   }
 })
 
+const downloadToken = useCookie('Download-Token', {
+  domain: baseURL,
+  path: '/',
+  maxAge: 60 * 60 * 24,
+
+  encode: (value) => value || '',
+})
 
 const isOwener = computed(() => {
   return session.value && data.value && session.value.user.email === data.value.info.uploader
@@ -52,13 +59,6 @@ const download = async () => {
       })
       return
     }
-    const downloadToken = useCookie('Download-Token', {
-      domain: baseURL,
-      path: '/',
-      maxAge: 60 * 60 * 24,
-
-      encode: (value) => value || '',
-    })
     downloadToken.value = data.value.info.downloadToken
     const a = document.createElement('a')
     a.href = baseURL + '/tool/file/' + data.value.info.id + '/download/'
@@ -100,8 +100,16 @@ const deleteFile = () => {
 
 const deleteConfirm = ref(false)
 
+
 watchEffect(() => {
   console.log("Token:", data.value?.info.downloadToken)
+
+  if (data.value?.info.downloadToken) {
+    downloadToken.value = data.value.info.downloadToken
+  }
+
+  console.log("Cookie DT:", downloadToken.value)
+
 })
 
 </script>
