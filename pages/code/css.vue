@@ -5,6 +5,7 @@ import { useToast } from '~/components/ui/toast'
 import * as prettier from 'prettier/standalone'
 import * as postcss from 'prettier/parser-postcss'
 import * as prettierPluginEstree from 'prettier/plugins/estree'
+import CleanCSS from 'clean-css'
 
 const { toast } = useToast()
 
@@ -52,7 +53,7 @@ code {
 }
 `)
 
-onMounted(() => {})
+onMounted(() => { })
 
 const loaded = ref(false)
 
@@ -82,16 +83,17 @@ async function format() {
 
 async function minified() {
   try {
-    const result = await fetch('/api/code/css', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: new URLSearchParams({ code: code.value }),
-    })
-    const data = await result.json()
-
-    code.value = data?.result?.styles
+    // const result = await fetch('/api/code/css', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/x-www-form-urlencoded',
+    //   },
+    //   body: new URLSearchParams({ code: code.value }),
+    // })
+    // const data = await result.json()
+    // code.value = data?.result?.styles
+    const result = new CleanCSS().minify(code.value)
+    code.value = result.styles
     toast({
       title: 'Compressed',
       description: 'CSS code has been compressed',
@@ -125,40 +127,25 @@ function paste() {
 </script>
 <template>
   <div class="flex h-full w-full flex-col items-center">
-    <div
-      v-show="loaded"
-      class="w-[90%] xl:w-[70%] h-full flex flex-col items-start gap-6"
-    >
-      <Title
-        title="CSS"
-        icon="mdi:language-css3"
-        description="CSS Formatter, Compressor"
-      />
-      <AppCodeMirror
-        class="flex-1"
-        v-model="code"
-        @loaded="
-          () => {
-            loaded = true
-          }
-        "
-        :lang="css"
-      />
+    <div v-show="loaded" class="w-[90%] xl:w-[70%] h-full flex flex-col items-start gap-6">
+      <Title title="CSS" icon="mdi:language-css3" description="CSS Formatter, Compressor" />
+      <AppCodeMirror class="flex-1" v-model="code" @loaded="
+        () => {
+          loaded = true
+        }
+      " :lang="css" />
       <div class="flex flex-row gap-2">
         <Button @click="format" variant="secondary">Formatter</Button>
         <Button @click="minified" variant="outline">Minify </Button>
-        <Button @click="copy" variant="ghost"
-          ><Icon name="mdi:content-copy"
-        /></Button>
-        <Button @click="paste" variant="ghost"
-          ><Icon name="mdi:content-paste"
-        /></Button>
+        <Button @click="copy" variant="ghost">
+          <Icon name="mdi:content-copy" />
+        </Button>
+        <Button @click="paste" variant="ghost">
+          <Icon name="mdi:content-paste" />
+        </Button>
       </div>
     </div>
-    <div
-      v-show="!loaded"
-      class="flex items-center justify-center w-full h-full"
-    >
+    <div v-show="!loaded" class="flex items-center justify-center w-full h-full">
       <LoadingCycle />
     </div>
   </div>
