@@ -17,6 +17,9 @@ export default defineNuxtConfig({
     api: 'https://api.mou.best',
   },
   vite: {
+    optimizeDeps: {
+      include: ['node-fetch-native'],
+    },
     plugins: [
       nodePolyfills({
         exclude: ['http', 'https', 'http2'],
