@@ -3,7 +3,7 @@ import { nodePolyfills } from 'vite-plugin-node-polyfills'
 
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
-  ssr: false,
+  ssr: true,
   devtools: { enabled: true },
   modules: [
     '@nuxt/icon',
