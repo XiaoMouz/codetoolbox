@@ -31,21 +31,12 @@ const codePages: Menu[] = [
     to: '/code/json',
     description: 'Convert, Formatter, Checker',
     icon: 'mdi:code-json',
-    state: 'wip',
   },
   {
     title: 'YAML',
     to: '/code/yaml',
     description: 'Convert, Formatter, Checker',
     icon: 'file-icons:yaml-alt4',
-    state: 'wip',
-  },
-  {
-    title: 'TOML',
-    to: '/code/toml',
-    description: 'Convert, Formatter, Checker',
-    icon: 'file-icons:toml',
-    state: 'wip',
   },
 ]
 const cryptoPages: Menu[] = [

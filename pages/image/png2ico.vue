@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 
-//import png2icons from 'png2icons'
 
 useHead({
   title: 'PNG to ICO',
@@ -49,12 +48,14 @@ async function convert(file: File) {
     reader.readAsArrayBuffer(file)
   })
   if (format.value == 'ico') {
-    // png2icons.createICO(
+
+    // const ico = createICO(
     //   buffer,
     //   scaling.value,
     //   noc.value,
     //   innerFormat.value == 'png' ? true : false
     // )
+    // console.log(ico)
   }
 }
 </script>
@@ -67,29 +68,21 @@ async function convert(file: File) {
           <AlertTitle>Working in Progress</AlertTitle>
           <AlertDescription class="flex gap-1">
             You still use it on
-            <a
-              class="transition-all font-bold flex items-center hover:underline hover:underline-offset-4"
-              target="_blank"
-              href="https://lolicon.dev/#/image/png2ico"
-              ><Icon name="mdi:link-variant"></Icon>lolicon.dev</a
-            >
+            <a class="transition-all font-bold flex items-center hover:underline hover:underline-offset-4"
+              target="_blank" href="https://lolicon.dev/#/image/png2ico">
+              <Icon name="mdi:link-variant"></Icon>lolicon.dev
+            </a>
             or
-            <a
-              class="transition-all font-bold flex items-center hover:underline hover:underline-offset-4"
-              target="_blank"
-              href="https://xiaomouz.github.io/codetoolbox/#/image/png2ico"
-              ><Icon name="mdi:link-variant"></Icon>xiaomouz.github.io</a
-            >
+            <a class="transition-all font-bold flex items-center hover:underline hover:underline-offset-4"
+              target="_blank" href="https://xiaomouz.github.io/codetoolbox/#/image/png2ico">
+              <Icon name="mdi:link-variant"></Icon>xiaomouz.github.io
+            </a>
           </AlertDescription>
         </div>
       </Alert>
-      <Title
-        title="PNG to ICO"
-        icon="mdi:image-multiple-outline"
-        description="PNG to ICO or Apple ICNS converter"
-      />
+      <Title title="PNG to ICO" icon="mdi:image-multiple-outline" description="PNG to ICO or Apple ICNS converter" />
       <Uploader @callback="convert" accept="image/png" class="w-full" />
-      <div class="flex flex-wrap gap-4 items-start">
+      <div class="flex flex-wrap gap-4 items-center">
         <div>
           <Label for="format">Output format</Label>
           <Select id="format" v-model="format">
@@ -120,14 +113,7 @@ async function convert(file: File) {
           </Select>
         </div>
         <div v-if="format == 'ico'">
-          <NumberField
-            id="noc"
-            type="number"
-            v-model="noc"
-            :default-value="0"
-            :min="0"
-            :max="256"
-          >
+          <NumberField id="noc" type="number" v-model="noc" :default-value="0" :min="0" :max="256">
             <Label for="noc">Number of Colors</Label>
             <NumberFieldContent>
               <NumberFieldDecrement />
@@ -136,37 +122,44 @@ async function convert(file: File) {
             </NumberFieldContent>
           </NumberField>
         </div>
-        <div class="flex h-full flex-col gap-1">
-          <Label for="forExe">ICO for EXE icon</Label>
-          <div class="h-full flex justify-center items-center">
-            <Switch id="forExe" v-model="useForExe" />
-          </div>
-        </div>
         <div>
           <Label for="scaling">Scaling Algorithm</Label>
-          <Select
-            id="scaling"
-            :model-value="scaling.toString()"
-            @update:model-value="
-              (v) => {
-                if (v) scaling = parseInt(v) as 0 | 1 | 2 | 3 | 4 | 5
-              }
-            "
-          >
+          <Select id="scaling" :model-value="scaling.toString()" @update:model-value="
+            (v) => {
+              if (v) scaling = parseInt(v) as 0 | 1 | 2 | 3 | 4 | 5
+            }
+          ">
             <SelectTrigger>
               <SelectValue placeholder="Select a scaling algorithm" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectItem
-                  v-for="(value, key) in options"
-                  :value="key.toString()"
-                >
+                <SelectItem v-for="(value, key) in options" :value="key.toString()">
                   {{ value }}
                 </SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
+        </div>
+        <div class="flex items-center justify-center h-full gap-1">
+          <Label for="forExe">
+            <HoverCard>
+              <HoverCardTrigger>
+                <Icon name="mdi:package-variant-closed" class="size-5" />
+              </HoverCardTrigger>
+              <HoverCardContent>
+                <div class="flex flex-col gap-2">
+                  <p>Use for EXE</p>
+                  <p class="text-sm text-muted-foreground">
+                    This will make the ICO file compatible with Windows EXE files.
+                  </p>
+                </div>
+              </HoverCardContent>
+            </HoverCard>
+          </Label>
+          <div class="h-full flex justify-center items-center">
+            <Switch id="forExe" v-model="useForExe" />
+          </div>
         </div>
       </div>
       <!-- <div>
