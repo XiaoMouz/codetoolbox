@@ -242,4 +242,8 @@ const setRandomPassword = () => {
 
         </DialogContent>
     </Dialog>
+    <Badge v-if="!userAuthed" class="ml-4">
+        <Icon name="mdi:account-alert-outline" />
+        <span class="cursor-default">You need sign in.</span>
+    </Badge>
 </template>

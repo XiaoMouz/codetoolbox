@@ -33,6 +33,14 @@ useHead({
     <div class="w-[90%] xl:w-[70%] h-full flex flex-col items-start gap-6">
       <Title title="Online Copyboard" icon="mdi:file-cloud" description="A Online copyboard to store your text" />
       <div>
+        <Button @click="
+          () => {
+            $router.push('/share/copyboard/new')
+          }
+        ">
+          <Icon name="mdi:plus" class="mr-1 size-4" />
+          New
+        </Button>
         <ClientOnly>
           <CopyboardList />
         </ClientOnly>
