@@ -1,4 +1,4 @@
-<script lang="ts">
+<script setup lang="ts">
 useHead({
     title: 'Singbox Configer',
     meta: [
@@ -11,5 +11,5 @@ useHead({
 
 </script>
 <template>
-
+    <h1>Working on progress</h1>
 </template>
